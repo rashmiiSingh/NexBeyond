@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Users, GraduationCap, Briefcase, FileCode, Landmark, Trophy, ArrowRight, Star } from "lucide-react";
 
 interface NodeItem {
@@ -14,6 +14,14 @@ interface NodeItem {
 
 export default function Ecosystem() {
   const [selectedNodeId, setSelectedNodeId] = useState("center");
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
+
+  useEffect(() => {
+    setIsLargeScreen(window.innerWidth > 1024);
+    const handleResize = () => setIsLargeScreen(window.innerWidth > 1024);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const nodes: NodeItem[] = [
     {
@@ -129,7 +137,7 @@ export default function Ecosystem() {
                       }}
                     >
                       <animateMotion
-                        path={`M ${window?.innerWidth > 1024 ? 450 * 0.5 : 300 * 0.5} ${450 * 0.5} L ${node.x * 4.5} ${node.y * 4.5}`}
+                        path={`M ${isLargeScreen ? 450 * 0.5 : 300 * 0.5} ${450 * 0.5} L ${node.x * 4.5} ${node.y * 4.5}`}
                         dur="3s"
                         repeatCount="indefinite"
                       />

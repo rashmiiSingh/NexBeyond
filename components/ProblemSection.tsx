@@ -98,7 +98,7 @@ export default function ProblemSection() {
         {/* Interactive Comparison Cards (Mobile view) */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:hidden">
           {/* Traditional Learning Card */}
-          {(activeTab === "traditional" || window?.innerWidth >= 1024) && (
+          {activeTab === "traditional" && (
             <div className="p-8 rounded-3xl bg-cardDark/50 border border-red-950/20 flex flex-col gap-6 relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-red-900/5 rounded-full blur-3xl pointer-events-none" />
               <div className="flex items-center gap-3 text-red-400">
@@ -120,7 +120,7 @@ export default function ProblemSection() {
           )}
 
           {/* NexBeyond Card */}
-          {(activeTab === "nexbeyond" || window?.innerWidth >= 1024) && (
+          {activeTab === "nexbeyond" && (
             <div className="p-8 rounded-3xl bg-cardDark border border-gold/10 flex flex-col gap-6 relative overflow-hidden shadow-[0_10px_35px_-10px_rgba(212,175,55,0.05)]">
               <div className="absolute top-0 right-0 w-32 h-32 bg-gold/5 rounded-full blur-3xl pointer-events-none" />
               <div className="flex items-center gap-3 text-gold">
