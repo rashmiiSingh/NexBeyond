@@ -1,0 +1,1931 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NexBeyond | Build Beyond AI</title>
+  <!-- SEO tags -->
+  <meta name="description" content="Join India's most practical AI ecosystem designed to help students, developers, and professionals become AI Builders. Founded by Rashmi Singh.">
+  
+  <!-- Premium Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;700;900&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            background: "#090909",
+            gold: {
+              DEFAULT: "#D4AF37",
+              light: "#F3E5AB",
+              dark: "#AA7C11",
+            },
+            cardDark: {
+              DEFAULT: "#121212",
+              hover: "#181818",
+            }
+          },
+          fontFamily: {
+            sans: ["Inter", "sans-serif"],
+            display: ["Outfit", "sans-serif"],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #090909;
+      color: #ffffff;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    /* Glassmorphism panel styling */
+    .glass-panel {
+      background: rgba(18, 18, 18, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* Spotlight Spotlight Glow card base */
+    .spotlight-card {
+      position: relative;
+      overflow: hidden;
+      background: rgba(18, 18, 18, 0.7);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .spotlight-card:hover {
+      border-color: rgba(214, 175, 55, 0.25);
+      box-shadow: 0 10px 30px -10px rgba(214, 175, 55, 0.15);
+      transform: translateY(-2px);
+    }
+
+    .spotlight-glow {
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle, rgba(214, 175, 55, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.5s ease;
+      opacity: 0;
+      z-index: 0;
+    }
+
+    .spotlight-card:hover .spotlight-glow {
+      opacity: 1;
+    }
+
+    .gold-text-glow {
+      text-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+    }
+
+    /* Premium Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #090909;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1c1c1c;
+      border-radius: 4px;
+      border: 2px solid #090909;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #D4AF37;
+    }
+
+    /* Custom 3D Orb Background Glow */
+    .bg-gradient-orb {
+      background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.08) 0%, rgba(144, 37, 255, 0.04) 35%, rgba(0, 114, 255, 0.02) 65%, rgba(9, 9, 9, 0) 100%);
+    }
+
+    /* CSS animations */
+    @keyframes pulse-slow {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 0.8; }
+    }
+    .animate-pulse-slow {
+      animation: pulse-slow 6s infinite ease-in-out;
+    }
+  </style>
+</head>
+<body class="selection:bg-gold selection:text-black">
+
+  <!-- ambient background elements -->
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[1400px] h-[800px] bg-gradient-orb pointer-events-none z-0"></div>
+  <div class="absolute top-[2000px] right-0 w-[400px] h-[400px] bg-purple-900/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
+  <div class="absolute top-[4000px] left-0 w-[500px] h-[500px] bg-gold/5 rounded-full blur-[150px] pointer-events-none z-0"></div>
+
+  <!-- NAVIGATION HEADER -->
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-6">
+    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3">
+        <!-- SVG NB Logo -->
+        <svg viewBox="0 0 100 100" class="h-9 w-9 overflow-visible" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="g-n" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#00c6ff" />
+              <stop offset="100%" stop-color="#0072ff" />
+            </linearGradient>
+            <linearGradient id="g-b" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#0072ff" />
+              <stop offset="100%" stop-color="#9025ff" />
+            </linearGradient>
+            <linearGradient id="g-orb" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#00c6ff" />
+              <stop offset="50%" stop-color="#0072ff" />
+              <stop offset="100%" stop-color="#9025ff" />
+            </linearGradient>
+            <filter id="gl" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="3" result="b" />
+              <feComposite in="SourceGraphic" in2="b" operator="over" />
+            </filter>
+          </defs>
+          <path d="M 22 75 L 22 25 L 34 25 L 58 60 L 58 25 L 68 25 L 68 75 L 56 75 L 32 40 L 32 75 Z" fill="url(#g-n)" filter="url(#gl)" />
+          <path d="M 52 25 C 64 25, 76 29, 76 40 C 76 45, 72 49, 66 51 C 74 53, 79 58, 79 66 C 79 77, 67 80, 52 80 L 34 80 L 34 72 L 52 72 C 62 72, 68 70, 68 65 C 68 59, 60 58, 52 58 L 44 58 L 44 50 L 52 50 C 60 50, 66 49, 66 43 C 66 38, 60 37, 52 37 L 34 37 L 34 25 Z" fill="url(#g-b)" opacity="0.85" />
+          <ellipse cx="50" cy="52" rx="56" ry="18" stroke="url(#g-orb)" stroke-width="3.5" transform="rotate(-15, 50, 52)" filter="url(#gl)" class="animate-pulse" />
+        </svg>
+        <div class="flex items-center text-2xl font-bold tracking-tight">
+          <span class="text-white">Nex</span><span class="bg-gradient-to-r from-[#00c6ff] via-[#0072ff] to-[#9025ff] bg-clip-text text-transparent">Beyond</span>
+        </div>
+      </a>
+
+      <!-- Menu links -->
+      <nav class="hidden lg:flex items-center gap-8">
+        <a href="#why-nexbeyond" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">Why NexBeyond</a>
+        <a href="#journey" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">Journey</a>
+        <a href="#features" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">Features</a>
+        <a href="#schedule" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">Schedule</a>
+        <a href="#ecosystem" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">Ecosystem</a>
+        <a href="#founder" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">Founder</a>
+        <a href="#roadmap" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">Roadmap</a>
+        <a href="#faq" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">FAQ</a>
+      </nav>
+
+      <!-- CTA -->
+      <div class="hidden lg:flex items-center">
+        <a href="#newsletter" class="group relative inline-flex items-center gap-1.5 px-5 py-2.5 text-sm font-semibold text-black bg-gold rounded-full transition-all hover:bg-gold-light hover:shadow-[0_0_20px_rgba(212,175,55,0.4)]">
+          Join Community
+          <i data-lucide="arrow-up-right" class="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"></i>
+        </a>
+      </div>
+
+      <!-- Mobile toggle -->
+      <button id="mobile-menu-btn" class="lg:hidden p-2 text-gray-400 hover:text-white transition-colors">
+        <i data-lucide="menu" class="h-6 w-6"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Dropdown -->
+    <div id="mobile-menu" class="hidden absolute top-full left-0 right-0 bg-[#090909]/95 backdrop-blur-lg border-b border-white/5 py-6 px-6 flex flex-col gap-5">
+      <a href="#why-nexbeyond" class="text-lg font-medium text-gray-300 hover:text-white">Why NexBeyond</a>
+      <a href="#journey" class="text-lg font-medium text-gray-300 hover:text-white">Journey</a>
+      <a href="#features" class="text-lg font-medium text-gray-300 hover:text-white">Features</a>
+      <a href="#schedule" class="text-lg font-medium text-gray-300 hover:text-white">Schedule</a>
+      <a href="#ecosystem" class="text-lg font-medium text-gray-300 hover:text-white">Ecosystem</a>
+      <a href="#founder" class="text-lg font-medium text-gray-300 hover:text-white">Founder</a>
+      <a href="#roadmap" class="text-lg font-medium text-gray-300 hover:text-white">Roadmap</a>
+      <a href="#faq" class="text-lg font-medium text-gray-300 hover:text-white">FAQ</a>
+      <hr class="border-white/5 my-2">
+      <a href="#newsletter" class="flex items-center justify-center gap-1.5 py-3 text-black font-semibold bg-gold rounded-full">
+        Join Community <i data-lucide="arrow-up-right" class="h-4 w-4"></i>
+      </a>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="relative min-h-screen flex flex-col justify-center items-center pt-32 pb-24 px-6 overflow-hidden">
+    <canvas id="hero-canvas" class="absolute inset-0 w-full h-full pointer-events-none opacity-40 z-0"></canvas>
+    
+    <div class="absolute top-[30%] left-[50%] -translate-x-[50%] -translate-y-[50%] w-[500px] md:w-[800px] h-[300px] md:h-[500px] bg-gradient-to-tr from-gold/5 via-blue-600/5 to-purple-600/10 rounded-full blur-[100px] md:blur-[160px] pointer-events-none z-0 animate-pulse-slow"></div>
+
+    <div class="relative z-10 max-w-5xl mx-auto text-center flex flex-col items-center gap-8">
+      
+      <!-- Founder badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
+        <span class="h-1.5 w-1.5 rounded-full bg-gold animate-ping"></span>
+        <span class="text-xs font-semibold uppercase tracking-wider text-gray-300">Founded by Rashmi Singh</span>
+      </div>
+
+      <!-- Main Headline -->
+      <div class="flex flex-col items-center">
+        <span class="text-xs md:text-sm font-bold uppercase tracking-[0.3em] text-gold mb-3">Beyond Learning. Beyond AI. Beyond Limits.</span>
+        <h1 class="text-5xl md:text-8xl font-black tracking-tight leading-[1.05] max-w-4xl text-white">
+          Build <span class="bg-gradient-to-r from-gold-light via-gold to-gold-dark bg-clip-text text-transparent gold-text-glow">Beyond</span> AI
+        </h1>
+      </div>
+
+      <!-- Subtitle -->
+      <p class="text-base md:text-xl text-gray-400 max-w-3xl leading-relaxed">
+        Join India's most practical AI ecosystem designed to help students, developers, and professionals become AI Builders through projects, mentorship, and community.
+      </p>
+
+      <!-- CTAs -->
+      <div class="flex flex-col sm:flex-row items-center gap-4 w-full justify-center mt-4">
+        <a href="#newsletter" class="group flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-4 text-sm font-semibold text-black bg-gold rounded-full transition-all hover:bg-gold-light hover:shadow-[0_0_30px_rgba(212,175,55,0.4)]">
+          Join Community
+          <i data-lucide="arrow-right" class="h-4 w-4 transition-transform group-hover:translate-x-1"></i>
+        </a>
+        <a href="#newsletter" class="flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-4 text-sm font-semibold text-white bg-white/5 border border-white/10 backdrop-blur-md rounded-full hover:bg-white/10 transition-all">
+          Become a Mentor
+        </a>
+        <a href="https://www.youtube.com" target="_blank" class="group flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-4 text-sm font-semibold text-gray-300 hover:text-white transition-colors">
+          <span class="p-2 rounded-full bg-white/5 border border-white/10 group-hover:bg-gold/10 group-hover:border-gold/20 transition-all">
+            <i data-lucide="play" class="h-3 w-3 fill-current text-white group-hover:text-gold"></i>
+          </span>
+          Watch Demo
+        </a>
+      </div>
+
+      <!-- Counters Grid -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-16 pt-16 mt-8 border-t border-white/5 w-full">
+        <div class="flex flex-col items-center gap-1.5">
+          <div class="p-2.5 rounded-xl bg-white/5 border border-white/10 text-gold mb-1">
+            <i data-lucide="users" class="h-5 w-5"></i>
+          </div>
+          <div class="text-3xl md:text-4xl font-extrabold text-white"><span class="stat-counter" data-target="100">0</span>+</div>
+          <span class="text-xs text-gray-500 font-semibold uppercase tracking-wider">Members</span>
+        </div>
+        <div class="flex flex-col items-center gap-1.5">
+          <div class="p-2.5 rounded-xl bg-white/5 border border-white/10 text-gold mb-1">
+            <i data-lucide="calendar" class="h-5 w-5"></i>
+          </div>
+          <div class="text-3xl md:text-4xl font-extrabold text-white"><span class="stat-counter" data-target="20">0</span>+</div>
+          <span class="text-xs text-gray-500 font-semibold uppercase tracking-wider">Workshops</span>
+        </div>
+        <div class="flex flex-col items-center gap-1.5">
+          <div class="p-2.5 rounded-xl bg-white/5 border border-white/10 text-gold mb-1">
+            <i data-lucide="folder-git-2" class="h-5 w-5"></i>
+          </div>
+          <div class="text-3xl md:text-4xl font-extrabold text-white"><span class="stat-counter" data-target="50">0</span>+</div>
+          <span class="text-xs text-gray-500 font-semibold uppercase tracking-wider">Projects</span>
+        </div>
+        <div class="flex flex-col items-center gap-1.5">
+          <div class="p-2.5 rounded-xl bg-white/5 border border-white/10 text-gold mb-1">
+            <i data-lucide="graduation-cap" class="h-5 w-5"></i>
+          </div>
+          <div class="text-3xl md:text-4xl font-extrabold text-white"><span class="stat-counter" data-target="15">0</span>+</div>
+          <span class="text-xs text-gray-500 font-semibold uppercase tracking-wider">Industry Mentors</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- WHY NEXBEYOND -->
+  <section id="why-nexbeyond" class="relative py-24 px-6 z-10 border-t border-white/5 bg-[#090909]">
+    <div class="max-w-7xl mx-auto flex flex-col gap-16">
+      <div class="flex flex-col items-center text-center gap-4 max-w-3xl mx-auto">
+        <span class="text-xs font-bold uppercase tracking-[0.2em] text-gold">Why NexBeyond</span>
+        <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">Designed for the Next Generation of AI Builders</h2>
+        <p class="text-sm md:text-base text-gray-400">We reject the template-based, certification-only learning model. We believe AI must be built to be mastered.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+        <!-- Card 1 -->
+        <div class="spotlight-card p-8 md:p-10 rounded-3xl flex flex-col items-start gap-6 group">
+          <div class="spotlight-glow"></div>
+          <div class="relative z-10 p-4 bg-white/5 border border-white/10 rounded-2xl text-gold group-hover:text-black group-hover:bg-gold transition-all duration-300">
+            <i data-lucide="cpu" class="h-6 w-6"></i>
+          </div>
+          <div class="relative z-10 flex flex-col gap-3">
+            <h3 class="text-xl font-bold text-white group-hover:text-gold transition-colors">Learn</h3>
+            <p class="text-xs md:text-sm text-gray-400 leading-relaxed">Hands-on, immersive AI courses designed to take you from neural networks to generative agent architectures.</p>
+          </div>
+          <div class="absolute bottom-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-gold to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        </div>
+        <!-- Card 2 -->
+        <div class="spotlight-card p-8 md:p-10 rounded-3xl flex flex-col items-start gap-6 group">
+          <div class="spotlight-glow"></div>
+          <div class="relative z-10 p-4 bg-white/5 border border-white/10 rounded-2xl text-gold group-hover:text-black group-hover:bg-gold transition-all duration-300">
+            <i data-lucide="terminal" class="h-6 w-6"></i>
+          </div>
+          <div class="relative z-10 flex flex-col gap-3">
+            <h3 class="text-xl font-bold text-white group-hover:text-gold transition-colors">Build</h3>
+            <p class="text-xs md:text-sm text-gray-400 leading-relaxed">Create production-ready, industry-grade projects. Turn abstract ML theories into deployable, robust AI applications.</p>
+          </div>
+          <div class="absolute bottom-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-gold to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        </div>
+        <!-- Card 3 -->
+        <div class="spotlight-card p-8 md:p-10 rounded-3xl flex flex-col items-start gap-6 group">
+          <div class="spotlight-glow"></div>
+          <div class="relative z-10 p-4 bg-white/5 border border-white/10 rounded-2xl text-gold group-hover:text-black group-hover:bg-gold transition-all duration-300">
+            <i data-lucide="share-2" class="h-6 w-6"></i>
+          </div>
+          <div class="relative z-10 flex flex-col gap-3">
+            <h3 class="text-xl font-bold text-white group-hover:text-gold transition-colors">Connect</h3>
+            <p class="text-xs md:text-sm text-gray-400 leading-relaxed">Bridge the gap with India's premier network of AI researchers, developers, executives, and builders.</p>
+          </div>
+          <div class="absolute bottom-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-gold to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        </div>
+        <!-- Card 4 -->
+        <div class="spotlight-card p-8 md:p-10 rounded-3xl flex flex-col items-start gap-6 group">
+          <div class="spotlight-glow"></div>
+          <div class="relative z-10 p-4 bg-white/5 border border-white/10 rounded-2xl text-gold group-hover:text-black group-hover:bg-gold transition-all duration-300">
+            <i data-lucide="briefcase" class="h-6 w-6"></i>
+          </div>
+          <div class="relative z-10 flex flex-col gap-3">
+            <h3 class="text-xl font-bold text-white group-hover:text-gold transition-colors">Grow</h3>
+            <p class="text-xs md:text-sm text-gray-400 leading-relaxed">Fast-track your career with high-impact internship matches, resume building, mock interviews, and placements.</p>
+          </div>
+          <div class="absolute bottom-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-gold to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM SECTION (COMPARISON) -->
+  <section id="problem-section" class="relative py-24 px-6 z-10 bg-[#060606] border-t border-white/5">
+    <div class="absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] w-[600px] h-[300px] bg-red-950/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto flex flex-col gap-16">
+      <div class="flex flex-col items-center text-center gap-4 max-w-3xl mx-auto">
+        <span class="text-xs font-bold uppercase tracking-[0.2em] text-gold">The Reality Shift</span>
+        <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">Traditional AI Learning is Broken</h2>
+        <p class="text-sm md:text-base text-gray-400">A comparison of textbook theories versus the pragmatic, project-first philosophy of NexBeyond.</p>
+      </div>
+
+      <!-- Tab Switcher (Mobile) -->
+      <div class="flex lg:hidden justify-center mb-6">
+        <div class="inline-flex p-1.5 bg-white/5 border border-white/10 rounded-full backdrop-blur-md">
+          <button id="tab-tr" onclick="toggleProblemTab('tr')" class="px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 text-gray-400 hover:text-white">Traditional</button>
+          <button id="tab-nb" onclick="toggleProblemTab('nb')" class="px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 bg-gold/10 text-gold border border-gold/20">NexBeyond</button>
+        </div>
+      </div>
+
+      <!-- Mobile cards -->
+      <div id="problem-cards-mobile" class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:hidden">
+        <!-- Traditional card -->
+        <div id="card-traditional" class="hidden p-8 rounded-3xl bg-cardDark/50 border border-red-950/20 flex flex-col gap-6 relative overflow-hidden">
+          <div class="flex items-center gap-3 text-red-400">
+            <i data-lucide="shield-alert" class="h-6 w-6"></i>
+            <h3 class="text-xl font-bold tracking-tight">Traditional Learning</h3>
+          </div>
+          <ul class="flex flex-col gap-4 text-xs md:text-sm text-gray-400">
+            <li class="flex gap-2"><i data-lucide="x" class="h-4 w-4 text-red-500 mt-0.5 shrink-0"></i> <div><strong class="text-gray-300 block">Core Focus</strong> theory & lecture slides</div></li>
+            <li class="flex gap-2"><i data-lucide="x" class="h-4 w-4 text-red-500 mt-0.5 shrink-0"></i> <div><strong class="text-gray-300 block">Validation</strong> PDF certificates</div></li>
+            <li class="flex gap-2"><i data-lucide="x" class="h-4 w-4 text-red-500 mt-0.5 shrink-0"></i> <div><strong class="text-gray-300 block">Projects</strong> basic copy-paste notebooks</div></li>
+            <li class="flex gap-2"><i data-lucide="x" class="h-4 w-4 text-red-500 mt-0.5 shrink-0"></i> <div><strong class="text-gray-300 block">Mentorship</strong> zero expert contact</div></li>
+            <li class="flex gap-2"><i data-lucide="x" class="h-4 w-4 text-red-500 mt-0.5 shrink-0"></i> <div><strong class="text-gray-300 block">Community</strong> textbook learning isolation</div></li>
+          </ul>
+        </div>
+
+        <!-- NexBeyond card -->
+        <div id="card-nexbeyond" class="p-8 rounded-3xl bg-cardDark border border-gold/10 flex flex-col gap-6 relative overflow-hidden">
+          <div class="flex items-center gap-3 text-gold">
+            <i data-lucide="rocket" class="h-6 w-6"></i>
+            <h3 class="text-xl font-bold tracking-tight">NexBeyond</h3>
+          </div>
+          <ul class="flex flex-col gap-4 text-xs md:text-sm text-gray-400">
+            <li class="flex gap-2"><i data-lucide="check" class="h-4 w-4 text-gold mt-0.5 shrink-0"></i> <div><strong class="text-white block">Core Focus</strong> active project deployments</div></li>
+            <li class="flex gap-2"><i data-lucide="check" class="h-4 w-4 text-gold mt-0.5 shrink-0"></i> <div><strong class="text-white block">Validation</strong> live portfolio of code repos</div></li>
+            <li class="flex gap-2"><i data-lucide="check" class="h-4 w-4 text-gold mt-0.5 shrink-0"></i> <div><strong class="text-white block">Projects</strong> multi-agent AI ecosystems</div></li>
+            <li class="flex gap-2"><i data-lucide="check" class="h-4 w-4 text-gold mt-0.5 shrink-0"></i> <div><strong class="text-white block">Mentorship</strong> direct feedback from developers</div></li>
+            <li class="flex gap-2"><i data-lucide="check" class="h-4 w-4 text-gold mt-0.5 shrink-0"></i> <div><strong class="text-white block">Community</strong> national network of innovators</div></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Desktop table -->
+      <div class="hidden lg:block overflow-hidden rounded-3xl border border-white/5 bg-cardDark/30 backdrop-blur-md">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="border-b border-white/5 bg-cardDark/70">
+              <th class="p-6 text-sm font-semibold text-gray-400">Features</th>
+              <th class="p-6 text-sm font-semibold text-red-400/90"><span class="flex items-center gap-2"><i data-lucide="shield-alert" class="h-4 w-4"></i> Traditional Academy</span></th>
+              <th class="p-6 text-sm font-semibold text-gold"><span class="flex items-center gap-2"><i data-lucide="rocket" class="h-4 w-4"></i> NexBeyond Ecosystem</span></th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-300 text-sm">
+            <tr class="border-b border-white/5 hover:bg-white/[0.01] transition-all">
+              <td class="p-6 font-bold text-white">Core Focus</td>
+              <td class="p-6 border-r border-white/5"><span class="flex gap-2"><i data-lucide="x" class="h-4 w-4 text-red-500 shrink-0"></i> Passive theoretical lectures & slides</span></td>
+              <td class="p-6 text-white"><span class="flex gap-2"><i data-lucide="check" class="h-4 w-4 text-gold shrink-0"></i> Active project building & deployments</span></td>
+            </tr>
+            <tr class="border-b border-white/5 hover:bg-white/[0.01] transition-all">
+              <td class="p-6 font-bold text-white">Validation</td>
+              <td class="p-6 border-r border-white/5"><span class="flex gap-2"><i data-lucide="x" class="h-4 w-4 text-red-500 shrink-0"></i> Generic, non-verified PDF certificates</span></td>
+              <td class="p-6 text-white"><span class="flex gap-2"><i data-lucide="check" class="h-4 w-4 text-gold shrink-0"></i> Live portfolio of functional AI repositories</span></td>
+            </tr>
+            <tr class="border-b border-white/5 hover:bg-white/[0.01] transition-all">
+              <td class="p-6 font-bold text-white">Project Experience</td>
+              <td class="p-6 border-r border-white/5"><span class="flex gap-2"><i data-lucide="x" class="h-4 w-4 text-red-500 shrink-0"></i> Basic copy-paste Jupyter notebooks</span></td>
+              <td class="p-6 text-white"><span class="flex gap-2"><i data-lucide="check" class="h-4 w-4 text-gold shrink-0"></i> Production-ready, multi-agent AI ecosystems</span></td>
+            </tr>
+            <tr class="border-b border-white/5 hover:bg-white/[0.01] transition-all">
+              <td class="p-6 font-bold text-white">Guidance & Mentorship</td>
+              <td class="p-6 border-r border-white/5"><span class="flex gap-2"><i data-lucide="x" class="h-4 w-4 text-red-500 shrink-0"></i> Zero direct access to senior builders</span></td>
+              <td class="p-6 text-white"><span class="flex gap-2"><i data-lucide="check" class="h-4 w-4 text-gold shrink-0"></i> 1-on-1 critique & support from industry experts</span></td>
+            </tr>
+            <tr class="border-b border-white/5 hover:bg-white/[0.01] transition-all">
+              <td class="p-6 font-bold text-white">Ecosystem & Network</td>
+              <td class="p-6 border-r border-white/5"><span class="flex gap-2"><i data-lucide="x" class="h-4 w-4 text-red-500 shrink-0"></i> Isolated, competitive, textbook learning</span></td>
+              <td class="p-6 text-white"><span class="flex gap-2"><i data-lucide="check" class="h-4 w-4 text-gold shrink-0"></i> Collaborative national network of innovators</span></td>
+            </tr>
+            <tr class="border-b border-white/5 hover:bg-white/[0.01] transition-all">
+              <td class="p-6 font-bold text-white">Career Output</td>
+              <td class="p-6 border-r border-white/5"><span class="flex gap-2"><i data-lucide="x" class="h-4 w-4 text-red-500 shrink-0"></i> Generic resume templates & cold applications</span></td>
+              <td class="p-6 text-white"><span class="flex gap-2"><i data-lucide="check" class="h-4 w-4 text-gold shrink-0"></i> Direct internship matching & job placements</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEARNING JOURNEY ROADMAP -->
+  <section id="journey" class="relative py-24 px-6 z-10 bg-[#090909]">
+    <div class="max-w-7xl mx-auto flex flex-col gap-16">
+      <div class="flex flex-col items-center text-center gap-4 max-w-3xl mx-auto">
+        <span class="text-xs font-bold uppercase tracking-[0.2em] text-gold">The Roadmap</span>
+        <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">Your Journey to AI Mastery</h2>
+        <p class="text-sm md:text-base text-gray-400">A structured pathway designed to transform you from a consumer of AI into a builder of future ecosystems.</p>
+      </div>
+
+      <!-- Roadmap buttons -->
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-9 gap-4 w-full">
+        <!-- Step 1 -->
+        <button onclick="selectJourneyStep(0)" id="j-step-0" class="relative p-5 rounded-2xl flex flex-col items-center gap-4 text-center border bg-gold/10 border-gold shadow-[0_0_20px_rgba(212,175,55,0.15)] scale-105 z-10 transition-all duration-300">
+          <div class="absolute top-2 left-2 text-[10px] font-bold h-5 w-5 rounded-full flex items-center justify-center border border-gold/30 text-gold bg-gold/10">1</div>
+          <div class="j-icon-wrapper p-3 rounded-xl border bg-gold text-black border-gold"><i data-lucide="user-plus" class="h-5 w-5"></i></div>
+          <span class="text-sm font-bold tracking-tight text-gold">Join</span>
+        </button>
+        <!-- Step 2 -->
+        <button onclick="selectJourneyStep(1)" id="j-step-1" class="relative p-5 rounded-2xl flex flex-col items-center gap-4 text-center border bg-cardDark/40 border-white/5 hover:border-white/10 hover:bg-cardDark/60 transition-all duration-300">
+          <div class="absolute top-2 left-2 text-[10px] font-bold h-5 w-5 rounded-full flex items-center justify-center border border-white/10 text-gray-500">2</div>
+          <div class="j-icon-wrapper p-3 rounded-xl border bg-white/5 text-gray-400 border-white/10"><i data-lucide="book-open" class="h-5 w-5"></i></div>
+          <span class="text-sm font-bold tracking-tight text-gray-300">Learn</span>
+        </button>
+        <!-- Step 3 -->
+        <button onclick="selectJourneyStep(2)" id="j-step-2" class="relative p-5 rounded-2xl flex flex-col items-center gap-4 text-center border bg-cardDark/40 border-white/5 hover:border-white/10 hover:bg-cardDark/60 transition-all duration-300">
+          <div class="absolute top-2 left-2 text-[10px] font-bold h-5 w-5 rounded-full flex items-center justify-center border border-white/10 text-gray-500">3</div>
+          <div class="j-icon-wrapper p-3 rounded-xl border bg-white/5 text-gray-400 border-white/10"><i data-lucide="terminal" class="h-5 w-5"></i></div>
+          <span class="text-sm font-bold tracking-tight text-gray-300">Build</span>
+        </button>
+        <!-- Step 4 -->
+        <button onclick="selectJourneyStep(3)" id="j-step-3" class="relative p-5 rounded-2xl flex flex-col items-center gap-4 text-center border bg-cardDark/40 border-white/5 hover:border-white/10 hover:bg-cardDark/60 transition-all duration-300">
+          <div class="absolute top-2 left-2 text-[10px] font-bold h-5 w-5 rounded-full flex items-center justify-center border border-white/10 text-gray-500">4</div>
+          <div class="j-icon-wrapper p-3 rounded-xl border bg-white/5 text-gray-400 border-white/10"><i data-lucide="users" class="h-5 w-5"></i></div>
+          <span class="text-sm font-bold tracking-tight text-gray-300">Collaborate</span>
+        </button>
+        <!-- Step 5 -->
+        <button onclick="selectJourneyStep(4)" id="j-step-4" class="relative p-5 rounded-2xl flex flex-col items-center gap-4 text-center border bg-cardDark/40 border-white/5 hover:border-white/10 hover:bg-cardDark/60 transition-all duration-300">
+          <div class="absolute top-2 left-2 text-[10px] font-bold h-5 w-5 rounded-full flex items-center justify-center border border-white/10 text-gray-500">5</div>
+          <div class="j-icon-wrapper p-3 rounded-xl border bg-white/5 text-gray-400 border-white/10"><i data-lucide="graduation-cap" class="h-5 w-5"></i></div>
+          <span class="text-sm font-bold tracking-tight text-gray-300">Mentorship</span>
+        </button>
+        <!-- Step 6 -->
+        <button onclick="selectJourneyStep(5)" id="j-step-5" class="relative p-5 rounded-2xl flex flex-col items-center gap-4 text-center border bg-cardDark/40 border-white/5 hover:border-white/10 hover:bg-cardDark/60 transition-all duration-300">
+          <div class="absolute top-2 left-2 text-[10px] font-bold h-5 w-5 rounded-full flex items-center justify-center border border-white/10 text-gray-500">6</div>
+          <div class="j-icon-wrapper p-3 rounded-xl border bg-white/5 text-gray-400 border-white/10"><i data-lucide="award" class="h-5 w-5"></i></div>
+          <span class="text-sm font-bold tracking-tight text-gray-300">Portfolio</span>
+        </button>
+        <!-- Step 7 -->
+        <button onclick="selectJourneyStep(6)" id="j-step-6" class="relative p-5 rounded-2xl flex flex-col items-center gap-4 text-center border bg-cardDark/40 border-white/5 hover:border-white/10 hover:bg-cardDark/60 transition-all duration-300">
+          <div class="absolute top-2 left-2 text-[10px] font-bold h-5 w-5 rounded-full flex items-center justify-center border border-white/10 text-gray-500">7</div>
+          <div class="j-icon-wrapper p-3 rounded-xl border bg-white/5 text-gray-400 border-white/10"><i data-lucide="briefcase" class="h-5 w-5"></i></div>
+          <span class="text-sm font-bold tracking-tight text-gray-300">Internship</span>
+        </button>
+        <!-- Step 8 -->
+        <button onclick="selectJourneyStep(7)" id="j-step-7" class="relative p-5 rounded-2xl flex flex-col items-center gap-4 text-center border bg-cardDark/40 border-white/5 hover:border-white/10 hover:bg-cardDark/60 transition-all duration-300">
+          <div class="absolute top-2 left-2 text-[10px] font-bold h-5 w-5 rounded-full flex items-center justify-center border border-white/10 text-gray-500">8</div>
+          <div class="j-icon-wrapper p-3 rounded-xl border bg-white/5 text-gray-400 border-white/10"><i data-lucide="trophy" class="h-5 w-5"></i></div>
+          <span class="text-sm font-bold tracking-tight text-gray-300">Job</span>
+        </button>
+        <!-- Step 9 -->
+        <button onclick="selectJourneyStep(8)" id="j-step-8" class="relative p-5 rounded-2xl flex flex-col items-center gap-4 text-center border bg-cardDark/40 border-white/5 hover:border-white/10 hover:bg-cardDark/60 transition-all duration-300">
+          <div class="absolute top-2 left-2 text-[10px] font-bold h-5 w-5 rounded-full flex items-center justify-center border border-white/10 text-gray-500">9</div>
+          <div class="j-icon-wrapper p-3 rounded-xl border bg-white/5 text-gray-400 border-white/10"><i data-lucide="user-check" class="h-5 w-5"></i></div>
+          <span class="text-sm font-bold tracking-tight text-gray-300">Become Mentor</span>
+        </button>
+      </div>
+
+      <!-- Stage Detail Panel -->
+      <div class="p-8 md:p-10 rounded-3xl bg-cardDark border border-white/5 relative overflow-hidden flex flex-col md:flex-row items-center gap-8 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.5)]">
+        <div class="absolute top-0 right-0 w-48 h-48 bg-gold/5 rounded-full blur-3xl pointer-events-none"></div>
+        <div id="j-panel-icon" class="p-5 bg-gold/10 border border-gold/20 rounded-2xl text-gold shrink-0">
+          <i data-lucide="user-plus" class="h-6 w-6"></i>
+        </div>
+        <div class="flex flex-col gap-3">
+          <div class="flex items-center gap-3">
+            <span id="j-panel-phase" class="text-xs font-bold text-gold uppercase tracking-wider">Phase 1</span>
+            <div class="h-1.5 w-1.5 rounded-full bg-gray-600"></div>
+            <span class="text-xs text-gray-400 font-medium">Stage of Development</span>
+          </div>
+          <h3 id="j-panel-title" class="text-2xl font-bold text-white tracking-tight">Join</h3>
+          <p id="j-panel-desc" class="text-xs md:text-sm text-gray-400 leading-relaxed max-w-4xl">Enter the ecosystem, pass a diagnostic assessment, and integrate into our localized study and building cohorts.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMUNITY FEATURES BENTO GRID -->
+  <section id="features" class="relative py-24 px-6 z-10 bg-[#060606] border-t border-white/5">
+    <div class="max-w-7xl mx-auto flex flex-col gap-16">
+      <div class="flex flex-col items-center text-center gap-4 max-w-3xl mx-auto">
+        <span class="text-xs font-bold uppercase tracking-[0.2em] text-gold">The Ecosystem Features</span>
+        <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">Engineered to Help You Succeed</h2>
+        <p class="text-sm md:text-base text-gray-400">A comprehensive, high-fidelity bento grid of benefits designed to support every single aspect of your learning and career development.</p>
+      </div>
+
+      <!-- Bento Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
+        <!-- Card 1 -->
+        <div class="spotlight-card p-6 rounded-3xl flex flex-col justify-between col-span-1 lg:col-span-2 group">
+          <div class="spotlight-glow"></div>
+          <div class="flex items-start justify-between mb-8 relative z-10">
+            <div class="p-3 bg-white/5 border border-white/10 rounded-xl text-gold group-hover:text-black group-hover:bg-gold transition-all duration-300"><i data-lucide="video" class="h-5 w-5"></i></div>
+            <span class="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-gold bg-gold/10 border border-gold/20 rounded-full">Live</span>
+          </div>
+          <div class="mt-auto relative z-10">
+            <h3 class="text-lg font-bold text-white group-hover:text-gold transition-colors mb-2">Weekly AI Sessions</h3>
+            <p class="text-xs text-gray-400 leading-relaxed">Live, synchronous learning reviews breaking down the latest advancements in deep learning models.</p>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="spotlight-card p-6 rounded-3xl flex flex-col justify-between group">
+          <div class="spotlight-glow"></div>
+          <div class="flex items-start justify-between mb-8 relative z-10">
+            <div class="p-3 bg-white/5 border border-white/10 rounded-xl text-gold group-hover:text-black group-hover:bg-gold transition-all duration-300"><i data-lucide="wand-2" class="h-5 w-5"></i></div>
+          </div>
+          <div class="mt-auto relative z-10">
+            <h3 class="text-lg font-bold text-white group-hover:text-gold transition-colors mb-2">Prompt Engineering</h3>
+            <p class="text-xs text-gray-400 leading-relaxed">Master programmatic prompts, multi-turn schemas, and instruction-tuning structures.</p>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="spotlight-card p-6 rounded-3xl flex flex-col justify-between col-span-1 lg:col-span-2 group">
+          <div class="spotlight-glow"></div>
+          <div class="flex items-start justify-between mb-8 relative z-10">
+            <div class="p-3 bg-white/5 border border-white/10 rounded-xl text-gold group-hover:text-black group-hover:bg-gold transition-all duration-300"><i data-lucide="cpu" class="h-5 w-5"></i></div>
+            <span class="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-gold bg-gold/10 border border-gold/20 rounded-full">Trending</span>
+          </div>
+          <div class="mt-auto relative z-10">
+            <h3 class="text-lg font-bold text-white group-hover:text-gold transition-colors mb-2">AI Agents</h3>
+            <p class="text-xs text-gray-400 leading-relaxed">Architect self-correcting autonomous pipelines utilizing frameworks like LangChain, AutoGen, and CrewAI.</p>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="spotlight-card p-6 rounded-3xl flex flex-col justify-between group">
+          <div class="spotlight-glow"></div>
+          <div class="flex items-start justify-between mb-8 relative z-10">
+            <div class="p-3 bg-white/5 border border-white/10 rounded-xl text-gold group-hover:text-black group-hover:bg-gold transition-all duration-300"><i data-lucide="trophy" class="h-5 w-5"></i></div>
+          </div>
+          <div class="mt-auto relative z-10">
+            <h3 class="text-lg font-bold text-white group-hover:text-gold transition-colors mb-2">Hackathons</h3>
+            <p class="text-xs text-gray-400 leading-relaxed">High-octane sprint weekends to build functional minimum viable products alongside cohort peers.</p>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="spotlight-card p-6 rounded-3xl flex flex-col justify-between col-span-1 lg:col-span-2 group">
+          <div class="spotlight-glow"></div>
+          <div class="flex items-start justify-between mb-8 relative z-10">
+            <div class="p-3 bg-white/5 border border-white/10 rounded-xl text-gold group-hover:text-black group-hover:bg-gold transition-all duration-300"><i data-lucide="git-branch" class="h-5 w-5"></i></div>
+          </div>
+          <div class="mt-auto relative z-10">
+            <h3 class="text-lg font-bold text-white group-hover:text-gold transition-colors mb-2">Open Source</h3>
+            <p class="text-xs text-gray-400 leading-relaxed">Contribute code directly to state-of-the-art developer tools and collaborative repository templates.</p>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="spotlight-card p-6 rounded-3xl flex flex-col justify-between group">
+          <div class="spotlight-glow"></div>
+          <div class="flex items-start justify-between mb-8 relative z-10">
+            <div class="p-3 bg-white/5 border border-white/10 rounded-xl text-gold group-hover:text-black group-hover:bg-gold transition-all duration-300"><i data-lucide="compass" class="h-5 w-5"></i></div>
+          </div>
+          <div class="mt-auto relative z-10">
+            <h3 class="text-lg font-bold text-white group-hover:text-gold transition-colors mb-2">Career Guidance</h3>
+            <p class="text-xs text-gray-400 leading-relaxed">Tailored mentorship matches to transition you cleanly from academic theory to corporate builders.</p>
+          </div>
+        </div>
+
+        <!-- Card 7 -->
+        <div class="spotlight-card p-6 rounded-3xl flex flex-col justify-between group">
+          <div class="spotlight-glow"></div>
+          <div class="flex items-start justify-between mb-8 relative z-10">
+            <div class="p-3 bg-white/5 border border-white/10 rounded-xl text-gold group-hover:text-black group-hover:bg-gold transition-all duration-300"><i data-lucide="code-2" class="h-5 w-5"></i></div>
+          </div>
+          <div class="mt-auto relative z-10">
+            <h3 class="text-lg font-bold text-white group-hover:text-gold transition-colors mb-2">Mock Interviews</h3>
+            <p class="text-xs text-gray-400 leading-relaxed">Rigorous technical reviews replicating screening pipelines of premier startups and tech companies.</p>
+          </div>
+        </div>
+
+        <!-- Card 8 -->
+        <div class="spotlight-card p-6 rounded-3xl flex flex-col justify-between group">
+          <div class="spotlight-glow"></div>
+          <div class="flex items-start justify-between mb-8 relative z-10">
+            <div class="p-3 bg-white/5 border border-white/10 rounded-xl text-gold group-hover:text-black group-hover:bg-gold transition-all duration-300"><i data-lucide="file-text" class="h-5 w-5"></i></div>
+          </div>
+          <div class="mt-auto relative z-10">
+            <h3 class="text-lg font-bold text-white group-hover:text-gold transition-colors mb-2">Resume Review</h3>
+            <p class="text-xs text-gray-400 leading-relaxed">Structure and tune your profile to cleanly highlight open-source contributions and active code repos.</p>
+          </div>
+        </div>
+
+        <!-- Card 9 -->
+        <div class="spotlight-card p-6 rounded-3xl flex flex-col justify-between col-span-1 lg:col-span-2 group">
+          <div class="spotlight-glow"></div>
+          <div class="flex items-start justify-between mb-8 relative z-10">
+            <div class="p-3 bg-white/5 border border-white/10 rounded-xl text-gold group-hover:text-black group-hover:bg-gold transition-all duration-300"><i data-lucide="message-square-code" class="h-5 w-5"></i></div>
+            <span class="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-gold bg-gold/10 border border-gold/20 rounded-full">Exclusive</span>
+          </div>
+          <div class="mt-auto relative z-10">
+            <h3 class="text-lg font-bold text-white group-hover:text-gold transition-colors mb-2">GitHub Reviews</h3>
+            <p class="text-xs text-gray-400 leading-relaxed">Get detailed pull request analysis, code modularity pointers, and modular refactoring critiques.</p>
+          </div>
+        </div>
+
+        <!-- Card 10 -->
+        <div class="spotlight-card p-6 rounded-3xl flex flex-col justify-between group">
+          <div class="spotlight-glow"></div>
+          <div class="flex items-start justify-between mb-8 relative z-10">
+            <div class="p-3 bg-white/5 border border-white/10 rounded-xl text-gold group-hover:text-black group-hover:bg-gold transition-all duration-300"><i data-lucide="file-check" class="h-5 w-5"></i></div>
+          </div>
+          <div class="mt-auto relative z-10">
+            <h3 class="text-lg font-bold text-white group-hover:text-gold transition-colors mb-2">Live Coding</h3>
+            <p class="text-xs text-gray-400 leading-relaxed">Interactive building sessions showing real-time debugging, testing, and cloud deployments.</p>
+          </div>
+        </div>
+
+        <!-- Card 11 -->
+        <div class="spotlight-card p-6 rounded-3xl flex flex-col justify-between group">
+          <div class="spotlight-glow"></div>
+          <div class="flex items-start justify-between mb-8 relative z-10">
+            <div class="p-3 bg-white/5 border border-white/10 rounded-xl text-gold group-hover:text-black group-hover:bg-gold transition-all duration-300"><i data-lucide="newspaper" class="h-5 w-5"></i></div>
+          </div>
+          <div class="mt-auto relative z-10">
+            <h3 class="text-lg font-bold text-white group-hover:text-gold transition-colors mb-2">AI News</h3>
+            <p class="text-xs text-gray-400 leading-relaxed">Curated updates keeping you aligned with rapid API deprecations, new models, and research releases.</p>
+          </div>
+        </div>
+
+        <!-- Card 12 -->
+        <div class="spotlight-card p-6 rounded-3xl flex flex-col justify-between col-span-1 lg:col-span-2 group">
+          <div class="spotlight-glow"></div>
+          <div class="flex items-start justify-between mb-8 relative z-10">
+            <div class="p-3 bg-white/5 border border-white/10 rounded-xl text-gold group-hover:text-black group-hover:bg-gold transition-all duration-300"><i data-lucide="eye" class="h-5 w-5"></i></div>
+          </div>
+          <div class="mt-auto relative z-10">
+            <h3 class="text-lg font-bold text-white group-hover:text-gold transition-colors mb-2">Project Showcase</h3>
+            <p class="text-xs text-gray-400 leading-relaxed">Present completed software assemblies to general recruiters, technical leaders, and angel allocators.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WEEKLY SCHEDULE CALENDAR -->
+  <section id="schedule" class="relative py-24 px-6 z-10 bg-[#090909]">
+    <div class="max-w-7xl mx-auto flex flex-col gap-16">
+      <div class="flex flex-col items-center text-center gap-4 max-w-3xl mx-auto">
+        <span class="text-xs font-bold uppercase tracking-[0.2em] text-gold">The Cadence</span>
+        <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">Our Weekly Schedule</h2>
+        <p class="text-sm md:text-base text-gray-400">A carefully balanced schedule mapped out to maintain high learning velocity without disrupting professional timelines.</p>
+      </div>
+
+      <!-- Calendar grid of 7 days -->
+      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4 w-full">
+        <!-- Mon -->
+        <button onclick="selectScheduleDay(0)" id="d-btn-0" class="relative p-6 rounded-3xl flex flex-col items-start gap-4 text-left border bg-cardDark/40 border-white/5 hover:border-white/10 transition-all duration-300">
+          <div class="w-full flex items-center justify-between">
+            <span class="text-xs font-semibold text-gray-500 uppercase">Mon</span>
+            <div class="d-icon p-1.5 rounded-lg border bg-white/5 text-gray-400 border-white/10"><i data-lucide="sparkles" class="h-5 w-5"></i></div>
+          </div>
+          <div class="flex flex-col gap-1">
+            <h3 class="text-sm font-bold text-gray-300">AI Insights</h3>
+          </div>
+        </button>
+        <!-- Tue -->
+        <button onclick="selectScheduleDay(1)" id="d-btn-1" class="relative p-6 rounded-3xl flex flex-col items-start gap-4 text-left border bg-cardDark/40 border-white/5 hover:border-white/10 transition-all duration-300">
+          <div class="w-full flex items-center justify-between">
+            <span class="text-xs font-semibold text-gray-500 uppercase">Tue</span>
+            <div class="d-icon p-1.5 rounded-lg border bg-white/5 text-gray-400 border-white/10"><i data-lucide="zap" class="h-5 w-5"></i></div>
+          </div>
+          <div class="flex flex-col gap-1">
+            <h3 class="text-sm font-bold text-gray-300">Prompt Challenge</h3>
+          </div>
+        </button>
+        <!-- Wed -->
+        <button onclick="selectScheduleDay(2)" id="d-btn-2" class="relative p-6 rounded-3xl flex flex-col items-start gap-4 text-left border bg-cardDark/40 border-white/5 hover:border-white/10 transition-all duration-300">
+          <div class="w-full flex items-center justify-between">
+            <span class="text-xs font-semibold text-gray-500 uppercase">Wed</span>
+            <div class="d-icon p-1.5 rounded-lg border bg-white/5 text-gray-400 border-white/10"><i data-lucide="file-code" class="h-5 w-5"></i></div>
+          </div>
+          <div class="flex flex-col gap-1">
+            <h3 class="text-sm font-bold text-gray-300">Project Review</h3>
+          </div>
+        </button>
+        <!-- Thu -->
+        <button onclick="selectScheduleDay(3)" id="d-btn-3" class="relative p-6 rounded-3xl flex flex-col items-start gap-4 text-left border bg-cardDark/40 border-white/5 hover:border-white/10 transition-all duration-300">
+          <div class="w-full flex items-center justify-between">
+            <span class="text-xs font-semibold text-gray-500 uppercase">Thu</span>
+            <div class="d-icon p-1.5 rounded-lg border bg-white/5 text-gray-400 border-white/10"><i data-lucide="hammer" class="h-5 w-5"></i></div>
+          </div>
+          <div class="flex flex-col gap-1">
+            <h3 class="text-sm font-bold text-gray-300">AI Tool</h3>
+          </div>
+        </button>
+        <!-- Fri -->
+        <button onclick="selectScheduleDay(4)" id="d-btn-4" class="relative p-6 rounded-3xl flex flex-col items-start gap-4 text-left border bg-cardDark/40 border-white/5 hover:border-white/10 transition-all duration-300">
+          <div class="w-full flex items-center justify-between">
+            <span class="text-xs font-semibold text-gray-500 uppercase">Fri</span>
+            <div class="d-icon p-1.5 rounded-lg border bg-white/5 text-gray-400 border-white/10"><i data-lucide="fast-forward" class="h-5 w-5"></i></div>
+          </div>
+          <div class="flex flex-col gap-1">
+            <h3 class="text-sm font-bold text-gray-300">Career</h3>
+          </div>
+        </button>
+        <!-- Sat -->
+        <button onclick="selectScheduleDay(5)" id="d-btn-5" class="relative p-6 rounded-3xl flex flex-col items-start gap-4 text-left border bg-gold/10 border-gold shadow-[0_0_20px_rgba(212,175,55,0.15)] scale-[1.03] z-10 transition-all duration-300">
+          <div class="w-full flex items-center justify-between">
+            <span class="text-xs font-semibold text-gold uppercase">Sat</span>
+            <div class="d-icon p-1.5 rounded-lg border bg-gold text-black border-gold"><i data-lucide="presentation" class="h-5 w-5"></i></div>
+          </div>
+          <div class="flex flex-col gap-1">
+            <h3 class="text-sm font-bold text-white">Workshop</h3>
+          </div>
+        </button>
+        <!-- Sun -->
+        <button onclick="selectScheduleDay(6)" id="d-btn-6" class="relative p-6 rounded-3xl flex flex-col items-start gap-4 text-left border bg-cardDark/40 border-white/5 hover:border-white/10 transition-all duration-300">
+          <div class="w-full flex items-center justify-between">
+            <span class="text-xs font-semibold text-gray-500 uppercase">Sun</span>
+            <div class="d-icon p-1.5 rounded-lg border bg-white/5 text-gray-400 border-white/10"><i data-lucide="users" class="h-5 w-5"></i></div>
+          </div>
+          <div class="flex flex-col gap-1">
+            <h3 class="text-sm font-bold text-gray-300">Networking</h3>
+          </div>
+        </button>
+      </div>
+
+      <!-- Calendar Detail Card -->
+      <div class="p-8 md:p-10 rounded-3xl bg-cardDark border border-white/5 relative overflow-hidden flex flex-col md:flex-row items-start justify-between gap-8 shadow-[0_15px_40px_-20px_rgba(0,0,0,0.6)]">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-gold/5 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="flex flex-col gap-6 max-w-3xl">
+          <div class="flex flex-wrap items-center gap-3">
+            <span id="cal-day-badge" class="px-3 py-1 text-xs font-bold text-black bg-gold rounded-full uppercase tracking-wider">Saturday</span>
+            <span id="cal-time" class="text-sm font-semibold text-gray-300">02:00 PM - 05:00 PM</span>
+          </div>
+          <div class="flex flex-col gap-3">
+            <h3 id="cal-title" class="text-2xl md:text-3xl font-extrabold text-white tracking-tight">AI & ML Workshop</h3>
+            <p id="cal-desc" class="text-xs md:text-sm text-gray-400 leading-relaxed">Full-scale building bootcamps. Construct and deploy active, production-grade applications from scratch.</p>
+          </div>
+          <div id="cal-tags" class="flex flex-wrap items-center gap-2 pt-2">
+            <span class="px-3 py-1 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-gray-300">#Building</span>
+            <span class="px-3 py-1 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-gray-300">#Cohort</span>
+            <span class="px-3 py-1 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-gray-300">#Production</span>
+          </div>
+        </div>
+
+        <div class="flex flex-col items-start gap-4 p-6 rounded-2xl bg-white/[0.02] border border-white/5 w-full md:w-80 shrink-0">
+          <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Ecosystem Status</span>
+          <div class="flex items-center gap-2">
+            <span class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span class="text-sm font-bold text-white">Enrollment Open</span>
+          </div>
+          <p class="text-xs text-gray-500">Join now to secure your seat in the upcoming cohort and gain instant access to all weekly sessions.</p>
+          <a href="#newsletter" class="w-full text-center py-2.5 rounded-full bg-gold hover:bg-gold-light text-black font-semibold text-xs transition-all shadow-[0_0_15px_rgba(212,175,55,0.2)]">Get Calendar Access</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMUNITY ECOSYSTEM DIAGRAM -->
+  <section id="ecosystem" class="relative py-24 px-6 z-10 bg-[#060606] border-t border-white/5">
+    <div class="max-w-7xl mx-auto flex flex-col gap-16">
+      <div class="flex flex-col items-center text-center gap-4 max-w-3xl mx-auto">
+        <span class="text-xs font-bold uppercase tracking-[0.2em] text-gold">The Network</span>
+        <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">Community Ecosystem Diagram</h2>
+        <p class="text-sm md:text-base text-gray-400">A cohesive network where students, experts, and companies interact fluidly to build code and launch careers.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- SVG diagram canvas -->
+        <div class="lg:col-span-7 flex items-center justify-center p-6 bg-cardDark/30 border border-white/5 rounded-3xl relative h-[450px] overflow-hidden">
+          <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:30px_30px]"></div>
+          
+          <svg class="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+            <!-- SVG connection lines will render correctly because elements are absolute -->
+          </svg>
+
+          <!-- Core node -->
+          <button onclick="selectEcosystemNode('center')" id="node-center" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-6 rounded-full border border-gold bg-gold text-black shadow-[0_0_35px_rgba(212,175,55,0.4)] scale-110 z-20 transition-all duration-300">
+            <i data-lucide="trophy" class="h-7 w-7"></i>
+          </button>
+
+          <!-- satellite nodes -->
+          <button onclick="selectEcosystemNode('students')" id="node-students" class="absolute left-[15%] top-[25%] -translate-x-1/2 -translate-y-1/2 p-4 rounded-full border border-white/10 bg-cardDark text-gray-400 hover:border-white/20 hover:text-white z-10 transition-all duration-300">
+            <i data-lucide="users" class="h-5 w-5"></i>
+            <span class="absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-gray-400 bg-black/80 border border-white/5 rounded whitespace-nowrap opacity-80">Students</span>
+          </button>
+          <button onclick="selectEcosystemNode('mentors')" id="node-mentors" class="absolute left-[15%] top-[75%] -translate-x-1/2 -translate-y-1/2 p-4 rounded-full border border-white/10 bg-cardDark text-gray-400 hover:border-white/20 hover:text-white z-10 transition-all duration-300">
+            <i data-lucide="graduation-cap" class="h-5 w-5"></i>
+            <span class="absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-gray-400 bg-black/80 border border-white/5 rounded whitespace-nowrap opacity-80">Mentors</span>
+          </button>
+          <button onclick="selectEcosystemNode('experts')" id="node-experts" class="absolute left-[50%] top-[15%] -translate-x-1/2 -translate-y-1/2 p-4 rounded-full border border-white/10 bg-cardDark text-gray-400 hover:border-white/20 hover:text-white z-10 transition-all duration-300">
+            <i data-lucide="star" class="h-5 w-5"></i>
+            <span class="absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-gray-400 bg-black/80 border border-white/5 rounded whitespace-nowrap opacity-80">Experts</span>
+          </button>
+          <button onclick="selectEcosystemNode('projects')" id="node-projects" class="absolute left-[50%] top-[85%] -translate-x-1/2 -translate-y-1/2 p-4 rounded-full border border-white/10 bg-cardDark text-gray-400 hover:border-white/20 hover:text-white z-10 transition-all duration-300">
+            <i data-lucide="file-code" class="h-5 w-5"></i>
+            <span class="absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-gray-400 bg-black/80 border border-white/5 rounded whitespace-nowrap opacity-80">Projects</span>
+          </button>
+          <button onclick="selectEcosystemNode('companies')" id="node-companies" class="absolute left-[85%] top-[25%] -translate-x-1/2 -translate-y-1/2 p-4 rounded-full border border-white/10 bg-cardDark text-gray-400 hover:border-white/20 hover:text-white z-10 transition-all duration-300">
+            <i data-lucide="landmark" class="h-5 w-5"></i>
+            <span class="absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-gray-400 bg-black/80 border border-white/5 rounded whitespace-nowrap opacity-80">Companies</span>
+          </button>
+          <button onclick="selectEcosystemNode('jobs')" id="node-jobs" class="absolute left-[85%] top-[75%] -translate-x-1/2 -translate-y-1/2 p-4 rounded-full border border-white/10 bg-cardDark text-gray-400 hover:border-white/20 hover:text-white z-10 transition-all duration-300">
+            <i data-lucide="briefcase" class="h-5 w-5"></i>
+            <span class="absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-gray-400 bg-black/80 border border-white/5 rounded whitespace-nowrap opacity-80">Jobs</span>
+          </button>
+        </div>
+
+        <!-- Node meta display -->
+        <div class="lg:col-span-5 flex flex-col justify-between p-8 rounded-3xl bg-cardDark border border-white/5 relative overflow-hidden h-[450px]">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-gold/5 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="flex flex-col gap-4 mt-4">
+            <div class="flex items-center gap-3">
+              <span class="text-[10px] font-bold text-gold uppercase tracking-wider">Ecosystem Node</span>
+              <div class="h-1.5 w-1.5 rounded-full bg-gray-600"></div>
+              <span class="text-[10px] text-gray-400 font-medium">Interactive Graph</span>
+            </div>
+            <h3 id="node-details-title" class="text-2xl md:text-3xl font-extrabold text-white tracking-tight">NexBeyond Core</h3>
+            <p id="node-details-desc" class="text-xs md:text-sm text-gray-400 leading-relaxed">India's largest AI-first builder ecosystem. The central gateway coordinating cohorts, projects, mentors, and employers.</p>
+          </div>
+          <div class="mt-auto">
+            <a href="#newsletter" class="group inline-flex items-center gap-1.5 text-sm font-semibold text-gold hover:text-gold-light">
+              Explore Cohort Placements <i data-lucide="arrow-right" class="h-4 w-4 transition-transform group-hover:translate-x-0.5"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY JOIN BENEFITS -->
+  <section id="why-join" class="relative py-24 px-6 z-10 bg-[#090909] border-t border-white/5">
+    <div class="max-w-7xl mx-auto flex flex-col gap-16">
+      <div class="flex flex-col items-center text-center gap-4 max-w-3xl mx-auto">
+        <span class="text-xs font-bold uppercase tracking-[0.2em] text-gold">The Benefits</span>
+        <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">Why Join NexBeyond?</h2>
+        <p class="text-sm md:text-base text-gray-400">A comprehensive overview of what makes NexBeyond a premier ecosystem for high-velocity AI builders.</p>
+      </div>
+
+      <!-- 8 Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
+        <!-- Benefit 1 -->
+        <div class="spotlight-card p-6 rounded-3xl flex items-start gap-5 group">
+          <div class="spotlight-glow"></div>
+          <div class="p-3 bg-white/5 border border-white/10 rounded-xl text-gold group-hover:text-black group-hover:bg-gold transition-all duration-300 shrink-0">
+            <i data-lucide="graduation-cap" class="h-5 w-5"></i>
+          </div>
+          <div class="relative z-10 flex flex-col gap-2">
+            <h3 class="text-base font-bold text-white group-hover:text-gold transition-colors">Learn from Experts</h3>
+            <p class="text-xs text-gray-400 leading-relaxed">Direct access to senior engineers, published ML authors, and open-source project leads.</p>
+          </div>
+        </div>
+        <!-- Benefit 2 -->
+        <div class="spotlight-card p-6 rounded-3xl flex items-start gap-5 group">
+          <div class="spotlight-glow"></div>
+          <div class="p-3 bg-white/5 border border-white/10 rounded-xl text-gold group-hover:text-black group-hover:bg-gold transition-all duration-300 shrink-0">
+            <i data-lucide="code-2" class="h-5 w-5"></i>
+          </div>
+          <div class="relative z-10 flex flex-col gap-2">
+            <h3 class="text-base font-bold text-white group-hover:text-gold transition-colors">Hands-on Projects</h3>
+            <p class="text-xs text-gray-400 leading-relaxed">Stop writing scripts. Develop multi-agent assemblies and local LLM fine-tunes.</p>
+          </div>
+        </div>
+        <!-- Benefit 3 -->
+        <div class="spotlight-card p-6 rounded-3xl flex items-start gap-5 group">
+          <div class="spotlight-glow"></div>
+          <div class="p-3 bg-white/5 border border-white/10 rounded-xl text-gold group-hover:text-black group-hover:bg-gold transition-all duration-300 shrink-0">
+            <i data-lucide="bookmark-check" class="h-5 w-5"></i>
+          </div>
+          <div class="relative z-10 flex flex-col gap-2">
+            <h3 class="text-base font-bold text-white group-hover:text-gold transition-colors">AI Certifications</h3>
+            <p class="text-xs text-gray-400 leading-relaxed">Earn project-verified certifications that showcase real competency in deep learning models.</p>
+          </div>
+        </div>
+        <!-- Benefit 4 -->
+        <div class="spotlight-card p-6 rounded-3xl flex items-start gap-5 group">
+          <div class="spotlight-glow"></div>
+          <div class="p-3 bg-white/5 border border-white/10 rounded-xl text-gold group-hover:text-black group-hover:bg-gold transition-all duration-300 shrink-0">
+            <i data-lucide="compass" class="h-5 w-5"></i>
+          </div>
+          <div class="relative z-10 flex flex-col gap-2">
+            <h3 class="text-base font-bold text-white group-hover:text-gold transition-colors">Career Support</h3>
+            <p class="text-xs text-gray-400 leading-relaxed">Weekly resume optimizations, mock interviews, system design guides, and profile tuning.</p>
+          </div>
+        </div>
+        <!-- Benefit 5 -->
+        <div class="spotlight-card p-6 rounded-3xl flex items-start gap-5 group">
+          <div class="spotlight-glow"></div>
+          <div class="p-3 bg-white/5 border border-white/10 rounded-xl text-gold group-hover:text-black group-hover:bg-gold transition-all duration-300 shrink-0">
+            <i data-lucide="share-2" class="h-5 w-5"></i>
+          </div>
+          <div class="relative z-10 flex flex-col gap-2">
+            <h3 class="text-base font-bold text-white group-hover:text-gold transition-colors">Industry Networking</h3>
+            <p class="text-xs text-gray-400 leading-relaxed">Bridge connections with venture capitalists, early-stage founders, and cohort developers.</p>
+          </div>
+        </div>
+        <!-- Benefit 6 -->
+        <div class="spotlight-card p-6 rounded-3xl flex items-start gap-5 group">
+          <div class="spotlight-glow"></div>
+          <div class="p-3 bg-white/5 border border-white/10 rounded-xl text-gold group-hover:text-black group-hover:bg-gold transition-all duration-300 shrink-0">
+            <i data-lucide="trophy" class="h-5 w-5"></i>
+          </div>
+          <div class="relative z-10 flex flex-col gap-2">
+            <h3 class="text-base font-bold text-white group-hover:text-gold transition-colors">Hackathons</h3>
+            <p class="text-xs text-gray-400 leading-relaxed">Accelerated, high-velocity coding weekends aimed at creating functional software models.</p>
+          </div>
+        </div>
+        <!-- Benefit 7 -->
+        <div class="spotlight-card p-6 rounded-3xl flex items-start gap-5 group">
+          <div class="spotlight-glow"></div>
+          <div class="p-3 bg-white/5 border border-white/10 rounded-xl text-gold group-hover:text-black group-hover:bg-gold transition-all duration-300 shrink-0">
+            <i data-lucide="briefcase" class="h-5 w-5"></i>
+          </div>
+          <div class="relative z-10 flex flex-col gap-2">
+            <h3 class="text-base font-bold text-white group-hover:text-gold transition-colors">Internships</h3>
+            <p class="text-xs text-gray-400 leading-relaxed">Direct application loops matching active builders to partner firms for placement cycles.</p>
+          </div>
+        </div>
+        <!-- Benefit 8 -->
+        <div class="spotlight-card p-6 rounded-3xl flex items-start gap-5 group">
+          <div class="spotlight-glow"></div>
+          <div class="p-3 bg-white/5 border border-white/10 rounded-xl text-gold group-hover:text-black group-hover:bg-gold transition-all duration-300 shrink-0">
+            <i data-lucide="award" class="h-5 w-5"></i>
+          </div>
+          <div class="relative z-10 flex flex-col gap-2">
+            <h3 class="text-base font-bold text-white group-hover:text-gold transition-colors">Community Recognition</h3>
+            <p class="text-xs text-gray-400 leading-relaxed">Earn ecosystem rank, moderate sub-cohort channels, and showcase projects directly in showcases.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEET THE FOUNDER -->
+  <section id="founder" class="relative py-24 px-6 z-10 bg-[#060606] border-t border-white/5">
+    <div class="max-w-7xl mx-auto flex flex-col gap-16">
+      <div class="flex flex-col items-center text-center gap-4 max-w-3xl mx-auto">
+        <span class="text-xs font-bold uppercase tracking-[0.2em] text-gold font-display">Leadership</span>
+        <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">Meet the Founder</h2>
+        <p class="text-sm md:text-base text-gray-400">Learn more about the driving force behind NexBeyond's project-first philosophy.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Profile Card -->
+        <div class="lg:col-span-5 flex flex-col gap-6 p-8 rounded-3xl bg-cardDark border border-white/5 relative overflow-hidden shadow-[0_15px_40px_-20px_rgba(0,0,0,0.6)]">
+          <div class="absolute top-0 right-0 w-48 h-48 bg-gold/5 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="aspect-[4/5] w-full rounded-2xl bg-gradient-to-tr from-black via-zinc-900 to-zinc-800 border border-white/5 relative overflow-hidden flex items-center justify-center">
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.08)_0%,transparent_70%)]"></div>
+            <div class="absolute h-56 w-56 rounded-full border border-gold/10 animate-pulse"></div>
+            
+            <svg viewBox="0 0 100 100" class="h-44 w-44 text-zinc-700 opacity-60" fill="currentColor">
+              <path d="M50 15 C40 15, 32 23, 32 33 C32 43, 40 51, 50 51 C60 51, 68 43, 68 33 C68 23, 60 15, 50 15 Z M50 58 C32 58, 15 67, 15 78 L 15 85 L 85 85 L 85 78 C 85 67, 68 58, 50 58 Z" />
+            </svg>
+
+            <div class="absolute bottom-6 left-6 right-6 flex flex-col gap-1.5 p-4 rounded-xl bg-black/60 border border-white/5 backdrop-blur-md">
+              <h3 class="text-lg font-bold text-white tracking-tight">Rashmi Singh</h3>
+              <span class="text-xs font-semibold text-gold uppercase tracking-wider">AI Developer & Trainer</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4 text-xs font-semibold text-gray-300">
+            <div class="flex items-center gap-2.5 p-3 rounded-xl bg-white/[0.02] border border-white/5"><i data-lucide="terminal" class="h-4 w-4 text-gold"></i> AI Developer</div>
+            <div class="flex items-center gap-2.5 p-3 rounded-xl bg-white/[0.02] border border-white/5"><i data-lucide="book-open" class="h-4 w-4 text-gold"></i> Published Author</div>
+            <div class="flex items-center gap-2.5 p-3 rounded-xl bg-white/[0.02] border border-white/5"><i data-lucide="play" class="h-4 w-4 text-gold"></i> Speaker</div>
+            <div class="flex items-center gap-2.5 p-3 rounded-xl bg-white/[0.02] border border-white/5"><i data-lucide="award" class="h-4 w-4 text-gold"></i> AI Trainer</div>
+          </div>
+        </div>
+
+        <!-- Quote & Book details -->
+        <div class="lg:col-span-7 flex flex-col gap-8">
+          <div class="p-8 rounded-3xl bg-cardDark/40 border border-white/5 relative overflow-hidden">
+            <span class="text-6xl text-gold/10 font-serif absolute -top-2 left-4 pointer-events-none">“</span>
+            <p class="text-base md:text-xl text-gray-300 font-medium leading-relaxed relative z-10 pl-6 mb-6">
+              I started NexBeyond with one belief: AI should not just be learned. It should be built.
+            </p>
+            <div class="pl-6 border-l-2 border-gold/40">
+              <span class="text-xs text-gray-400 font-bold block uppercase tracking-wider">Rashmi Singh</span>
+              <span class="text-[10px] text-gray-500 uppercase tracking-widest font-semibold">Founder, NexBeyond</span>
+            </div>
+          </div>
+
+          <div class="p-8 rounded-3xl bg-gradient-to-br from-cardDark to-cardDark/50 border border-white/5 flex flex-col md:flex-row gap-8 items-center">
+            <!-- Book Cover -->
+            <div class="w-36 h-48 bg-gradient-to-r from-indigo-950 via-zinc-950 to-indigo-900 border border-indigo-500/20 rounded-r-lg shadow-[0_15px_30px_rgba(0,0,0,0.7)] relative overflow-hidden shrink-0 flex flex-col justify-between p-4 transform hover:rotate-2 transition-transform">
+              <div class="absolute top-0 left-0 bottom-0 w-2.5 bg-indigo-500/10 border-r border-white/10"></div>
+              <span class="text-[9px] font-extrabold uppercase tracking-wider text-indigo-400 pl-2">RASHMI SINGH</span>
+              <div class="flex flex-col pl-2 mt-4">
+                <h4 class="text-sm font-extrabold text-white leading-tight">AI BEYOND</h4>
+                <h4 class="text-sm font-extrabold bg-gradient-to-r from-gold to-gold-light bg-clip-text text-transparent leading-tight text-gold-glow">CHATGPT</h4>
+              </div>
+              <div class="flex items-center gap-1 mt-auto pl-2">
+                <i data-lucide="bookmark-check" class="h-3 w-3 text-indigo-400"></i>
+                <span class="text-[7px] text-gray-400 font-semibold tracking-wider uppercase">Mastery Edition</span>
+              </div>
+            </div>
+
+            <!-- Book content -->
+            <div class="flex flex-col gap-4">
+              <span class="self-start px-2.5 py-0.5 text-[9px] font-bold text-indigo-400 bg-indigo-950/40 border border-indigo-900/50 rounded-full uppercase tracking-wider">Featured Publication</span>
+              <h3 class="text-xl font-bold text-white tracking-tight">AI Beyond ChatGPT</h3>
+              <p class="text-xs md:text-sm text-gray-400 leading-relaxed">A definitive guide detailing how to build production-ready ML loops, fine-tune localized LLMs, deploy vector indexing architectures, and program autonomous AI agents.</p>
+              <div>
+                <a href="https://amazon.com" target="_blank" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-indigo-950/40 border border-indigo-900/50 text-xs font-semibold text-indigo-300 hover:bg-indigo-950/60 transition-all">Buy on Amazon</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPANSION TIMELINE -->
+  <section id="roadmap" class="relative py-24 px-6 z-10 bg-[#090909] border-t border-white/5">
+    <div class="max-w-7xl mx-auto flex flex-col gap-16">
+      <div class="flex flex-col items-center text-center gap-4 max-w-3xl mx-auto">
+        <span class="text-xs font-bold uppercase tracking-[0.2em] text-gold font-display">Roadmap</span>
+        <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">Ecosystem Timeline 2026</h2>
+        <p class="text-sm md:text-base text-gray-400">A look at our strategic milestones designed to scale NexBeyond from a builder cohort into a national innovation network.</p>
+      </div>
+
+      <div class="relative border-l border-white/10 max-w-3xl mx-auto pl-8 md:pl-12 flex flex-col gap-12">
+        <!-- Milestone 1 -->
+        <div class="relative group">
+          <div class="absolute -left-[45px] md:-left-[61px] top-1.5 p-2 rounded-full bg-black border border-white/10 text-gray-400 group-hover:text-black group-hover:bg-gold group-hover:border-gold transition-all duration-300 z-10">
+            <i data-lucide="rocket" class="h-5 w-5"></i>
+          </div>
+          <div class="p-6 md:p-8 rounded-3xl bg-cardDark/50 border border-white/5 backdrop-blur-md flex flex-col gap-4 group-hover:border-gold/20 transition-all duration-300 relative overflow-hidden">
+            <div class="flex items-center justify-between flex-wrap gap-2 relative z-10">
+              <span class="px-2.5 py-1 text-[10px] font-bold text-gold bg-gold/10 border border-gold/20 rounded-full uppercase tracking-wider">Community Launch</span>
+              <span class="text-xs font-bold text-gray-500">Q1 2026</span>
+            </div>
+            <div class="flex flex-col gap-2 relative z-10">
+              <h3 class="text-lg md:text-xl font-bold text-white group-hover:text-gold transition-colors">Building the Foundation</h3>
+              <p class="text-xs md:text-sm text-gray-400 leading-relaxed">Opening cohort registrations, establishing regional Discord node channels, and releasing the builder dashboard beta.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Milestone 2 -->
+        <div class="relative group">
+          <div class="absolute -left-[45px] md:-left-[61px] top-1.5 p-2 rounded-full bg-black border border-white/10 text-gray-400 group-hover:text-black group-hover:bg-gold group-hover:border-gold transition-all duration-300 z-10">
+            <i data-lucide="target" class="h-5 w-5"></i>
+          </div>
+          <div class="p-6 md:p-8 rounded-3xl bg-cardDark/50 border border-white/5 backdrop-blur-md flex flex-col gap-4 group-hover:border-gold/20 transition-all duration-300 relative overflow-hidden">
+            <div class="flex items-center justify-between flex-wrap gap-2 relative z-10">
+              <span class="px-2.5 py-1 text-[10px] font-bold text-gold bg-gold/10 border border-gold/20 rounded-full uppercase tracking-wider">500 Members & 1000 Members</span>
+              <span class="text-xs font-bold text-gray-500">Q2 2026</span>
+            </div>
+            <div class="flex flex-col gap-2 relative z-10">
+              <h3 class="text-lg md:text-xl font-bold text-white group-hover:text-gold transition-colors">Cohort Scaling</h3>
+              <p class="text-xs md:text-sm text-gray-400 leading-relaxed">Scaling to 1000 active, project-vetted builders. Initiating daily code sprints and starting weekly project reviews.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Milestone 3 -->
+        <div class="relative group">
+          <div class="absolute -left-[45px] md:-left-[61px] top-1.5 p-2 rounded-full bg-black border border-white/10 text-gray-400 group-hover:text-black group-hover:bg-gold group-hover:border-gold transition-all duration-300 z-10">
+            <i data-lucide="trophy" class="h-5 w-5"></i>
+          </div>
+          <div class="p-6 md:p-8 rounded-3xl bg-cardDark/50 border border-white/5 backdrop-blur-md flex flex-col gap-4 group-hover:border-gold/20 transition-all duration-300 relative overflow-hidden">
+            <div class="flex items-center justify-between flex-wrap gap-2 relative z-10">
+              <span class="px-2.5 py-1 text-[10px] font-bold text-gold bg-gold/10 border border-gold/20 rounded-full uppercase tracking-wider">Ecosystem Hackathons</span>
+              <span class="text-xs font-bold text-gray-500">Q2 2026</span>
+            </div>
+            <div class="flex flex-col gap-2 relative z-10">
+              <h3 class="text-lg md:text-xl font-bold text-white group-hover:text-gold transition-colors">Interactive Sprints</h3>
+              <p class="text-xs md:text-sm text-gray-400 leading-relaxed">Launching regional hackathons matching developers together to build and deploy functional AI microservices.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Milestone 4 -->
+        <div class="relative group">
+          <div class="absolute -left-[45px] md:-left-[61px] top-1.5 p-2 rounded-full bg-black border border-white/10 text-gray-400 group-hover:text-black group-hover:bg-gold group-hover:border-gold transition-all duration-300 z-10">
+            <i data-lucide="calendar" class="h-5 w-5"></i>
+          </div>
+          <div class="p-6 md:p-8 rounded-3xl bg-cardDark/50 border border-white/5 backdrop-blur-md flex flex-col gap-4 group-hover:border-gold/20 transition-all duration-300 relative overflow-hidden">
+            <div class="flex items-center justify-between flex-wrap gap-2 relative z-10">
+              <span class="px-2.5 py-1 text-[10px] font-bold text-gold bg-gold/10 border border-gold/20 rounded-full uppercase tracking-wider">Offline Meetups</span>
+              <span class="text-xs font-bold text-gray-500">Q3 2026</span>
+            </div>
+            <div class="flex flex-col gap-2 relative z-10">
+              <h3 class="text-lg md:text-xl font-bold text-white group-hover:text-gold transition-colors">Local Building Cohorts</h3>
+              <p class="text-xs md:text-sm text-gray-400 leading-relaxed">Structuring offline meetups and co-working sprints across major tier-1 cities including Bangalore, Mumbai, and Delhi.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Milestone 5 -->
+        <div class="relative group">
+          <div class="absolute -left-[45px] md:-left-[61px] top-1.5 p-2 rounded-full bg-black border border-white/10 text-gray-400 group-hover:text-black group-hover:bg-gold group-hover:border-gold transition-all duration-300 z-10">
+            <i data-lucide="sparkles" class="h-5 w-5"></i>
+          </div>
+          <div class="p-6 md:p-8 rounded-3xl bg-cardDark/50 border border-white/5 backdrop-blur-md flex flex-col gap-4 group-hover:border-gold/20 transition-all duration-300 relative overflow-hidden">
+            <div class="flex items-center justify-between flex-wrap gap-2 relative z-10">
+              <span class="px-2.5 py-1 text-[10px] font-bold text-gold bg-gold/10 border border-gold/20 rounded-full uppercase tracking-wider">National AI Summit</span>
+              <span class="text-xs font-bold text-gray-500">Q3 2026</span>
+            </div>
+            <div class="flex flex-col gap-2 relative z-10">
+              <h3 class="text-lg md:text-xl font-bold text-white group-hover:text-gold transition-colors">The Showcase</h3>
+              <p class="text-xs md:text-sm text-gray-400 leading-relaxed">Our premier conference matching outstanding builders, projects, and products with capital leads and executives.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Milestone 6 -->
+        <div class="relative group">
+          <div class="absolute -left-[45px] md:-left-[61px] top-1.5 p-2 rounded-full bg-black border border-white/10 text-gray-400 group-hover:text-black group-hover:bg-gold group-hover:border-gold transition-all duration-300 z-10">
+            <i data-lucide="milestone" class="h-5 w-5"></i>
+          </div>
+          <div class="p-6 md:p-8 rounded-3xl bg-cardDark/50 border border-white/5 backdrop-blur-md flex flex-col gap-4 group-hover:border-gold/20 transition-all duration-300 relative overflow-hidden">
+            <div class="flex items-center justify-between flex-wrap gap-2 relative z-10">
+              <span class="px-2.5 py-1 text-[10px] font-bold text-gold bg-gold/10 border border-gold/20 rounded-full uppercase tracking-wider">5000 Members</span>
+              <span class="text-xs font-bold text-gray-500">Q4 2026</span>
+            </div>
+            <div class="flex flex-col gap-2 relative z-10">
+              <h3 class="text-lg md:text-xl font-bold text-white group-hover:text-gold transition-colors">Elite Network Scale</h3>
+              <p class="text-xs md:text-sm text-gray-400 leading-relaxed">Transitioning to 5000 vetted builders, releasing customized learning nodes, and setting up corporate matches.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Milestone 7 -->
+        <div class="relative group">
+          <div class="absolute -left-[45px] md:-left-[61px] top-1.5 p-2 rounded-full bg-black border border-white/10 text-gray-400 group-hover:text-black group-hover:bg-gold group-hover:border-gold transition-all duration-300 z-10">
+            <i data-lucide="compass" class="h-5 w-5"></i>
+          </div>
+          <div class="p-6 md:p-8 rounded-3xl bg-cardDark/50 border border-white/5 backdrop-blur-md flex flex-col gap-4 group-hover:border-gold/20 transition-all duration-300 relative overflow-hidden">
+            <div class="flex items-center justify-between flex-wrap gap-2 relative z-10">
+              <span class="px-2.5 py-1 text-[10px] font-bold text-gold bg-gold/10 border border-gold/20 rounded-full uppercase tracking-wider">National Expansion</span>
+              <span class="text-xs font-bold text-gray-500">Q4 2026</span>
+            </div>
+            <div class="flex flex-col gap-2 relative z-10">
+              <h3 class="text-lg md:text-xl font-bold text-white group-hover:text-gold transition-colors">The Next Era</h3>
+              <p class="text-xs md:text-sm text-gray-400 leading-relaxed">Launching offline workspaces and establishing NexBeyond nodes across premier engineering colleges nationwide.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials" class="relative py-24 px-6 z-10 bg-[#060606] border-t border-white/5">
+    <div class="max-w-7xl mx-auto flex flex-col gap-16">
+      <div class="flex flex-col items-center text-center gap-4 max-w-3xl mx-auto">
+        <span class="text-xs font-bold uppercase tracking-[0.2em] text-gold font-display">Testimonials</span>
+        <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">Loved by Builders & Companies</h2>
+        <p class="text-sm md:text-base text-gray-400">Hear from students, developers, researchers, and recruiters who are active inside the NexBeyond ecosystem.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
+        <!-- Review 1 -->
+        <div class="spotlight-card p-8 rounded-3xl flex flex-col justify-between group">
+          <div class="spotlight-glow"></div>
+          <div class="flex items-center justify-between mb-6 relative z-10">
+            <i data-lucide="quote" class="h-8 w-8 text-gold/10 group-hover:text-gold/20 transition-colors"></i>
+            <div class="flex items-center gap-0.5">
+              <i data-lucide="star" class="h-3.5 w-3.5 fill-gold text-gold"></i>
+              <i data-lucide="star" class="h-3.5 w-3.5 fill-gold text-gold"></i>
+              <i data-lucide="star" class="h-3.5 w-3.5 fill-gold text-gold"></i>
+              <i data-lucide="star" class="h-3.5 w-3.5 fill-gold text-gold"></i>
+              <i data-lucide="star" class="h-3.5 w-3.5 fill-gold text-gold"></i>
+            </div>
+          </div>
+          <p class="text-xs md:text-sm text-gray-300 italic leading-relaxed mb-8 relative z-10">
+            "Before joining NexBeyond, I was collecting basic Python and ML certificates on Coursera. Here, I built and fine-tuned a custom LLM model on an AWS instance. The interviewers at Deci were blown away by my GitHub projects."
+          </p>
+          <div class="flex items-center gap-4 pt-4 border-t border-white/5 relative z-10">
+            <div class="h-10 w-10 rounded-full bg-gradient-to-tr from-zinc-800 to-zinc-700 flex items-center justify-center font-bold text-sm text-gold border border-white/10 shrink-0">AM</div>
+            <div class="flex flex-col">
+              <span class="text-sm font-bold text-white">Aarav Mehta</span>
+              <span class="text-[9px] text-gray-500 uppercase tracking-wider font-semibold">AI Intern @ <span class="text-gold">Deci AI</span></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="spotlight-card p-8 rounded-3xl flex flex-col justify-between group">
+          <div class="spotlight-glow"></div>
+          <div class="flex items-center justify-between mb-6 relative z-10">
+            <i data-lucide="quote" class="h-8 w-8 text-gold/10 group-hover:text-gold/20 transition-colors"></i>
+            <div class="flex items-center gap-0.5">
+              <i data-lucide="star" class="h-3.5 w-3.5 fill-gold text-gold"></i>
+              <i data-lucide="star" class="h-3.5 w-3.5 fill-gold text-gold"></i>
+              <i data-lucide="star" class="h-3.5 w-3.5 fill-gold text-gold"></i>
+              <i data-lucide="star" class="h-3.5 w-3.5 fill-gold text-gold"></i>
+              <i data-lucide="star" class="h-3.5 w-3.5 fill-gold text-gold"></i>
+            </div>
+          </div>
+          <p class="text-xs md:text-sm text-gray-300 italic leading-relaxed mb-8 relative z-10">
+            "NexBeyond is the premier network for builders. The weekly code reviews and direct access to founder Rashmi Singh completely changed how I think about programming software. It is an elite workspace."
+          </p>
+          <div class="flex items-center gap-4 pt-4 border-t border-white/5 relative z-10">
+            <div class="h-10 w-10 rounded-full bg-gradient-to-tr from-zinc-800 to-zinc-700 flex items-center justify-center font-bold text-sm text-gold border border-white/10 shrink-0">PS</div>
+            <div class="flex flex-col">
+              <span class="text-sm font-bold text-white">Priya Sharma</span>
+              <span class="text-[9px] text-gray-500 uppercase tracking-wider font-semibold">Backend Engineer @ <span class="text-gold">Cognitive Scale</span></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="spotlight-card p-8 rounded-3xl flex flex-col justify-between group">
+          <div class="spotlight-glow"></div>
+          <div class="flex items-center justify-between mb-6 relative z-10">
+            <i data-lucide="quote" class="h-8 w-8 text-gold/10 group-hover:text-gold/20 transition-colors"></i>
+            <div class="flex items-center gap-0.5">
+              <i data-lucide="star" class="h-3.5 w-3.5 fill-gold text-gold"></i>
+              <i data-lucide="star" class="h-3.5 w-3.5 fill-gold text-gold"></i>
+              <i data-lucide="star" class="h-3.5 w-3.5 fill-gold text-gold"></i>
+              <i data-lucide="star" class="h-3.5 w-3.5 fill-gold text-gold"></i>
+              <i data-lucide="star" class="h-3.5 w-3.5 fill-gold text-gold"></i>
+            </div>
+          </div>
+          <p class="text-xs md:text-sm text-gray-300 italic leading-relaxed mb-8 relative z-10">
+            "As an industry mentor, I guide talented builders working on advanced agent workflows. The calibre of projects built by NexBeyond students is equivalent to professional startup engineering teams."
+          </p>
+          <div class="flex items-center gap-4 pt-4 border-t border-white/5 relative z-10">
+            <div class="h-10 w-10 rounded-full bg-gradient-to-tr from-zinc-800 to-zinc-700 flex items-center justify-center font-bold text-sm text-gold border border-white/10 shrink-0">VS</div>
+            <div class="flex flex-col">
+              <span class="text-sm font-bold text-white">Dr. Vikram Sen</span>
+              <span class="text-[9px] text-gray-500 uppercase tracking-wider font-semibold">Director @ <span class="text-gold">NeuralLabs</span></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 4 -->
+        <div class="spotlight-card p-8 rounded-3xl flex flex-col justify-between group">
+          <div class="spotlight-glow"></div>
+          <div class="flex items-center justify-between mb-6 relative z-10">
+            <i data-lucide="quote" class="h-8 w-8 text-gold/10 group-hover:text-gold/20 transition-colors"></i>
+            <div class="flex items-center gap-0.5">
+              <i data-lucide="star" class="h-3.5 w-3.5 fill-gold text-gold"></i>
+              <i data-lucide="star" class="h-3.5 w-3.5 fill-gold text-gold"></i>
+              <i data-lucide="star" class="h-3.5 w-3.5 fill-gold text-gold"></i>
+              <i data-lucide="star" class="h-3.5 w-3.5 fill-gold text-gold"></i>
+              <i data-lucide="star" class="h-3.5 w-3.5 fill-gold text-gold"></i>
+            </div>
+          </div>
+          <p class="text-xs md:text-sm text-gray-300 italic leading-relaxed mb-8 relative z-10">
+            "We struggles to find engineers who actually know how to deploy and run models. NexBeyond is our first channel for hiring. The students do not just know theories; they know how to push code."
+          </p>
+          <div class="flex items-center gap-4 pt-4 border-t border-white/5 relative z-10">
+            <div class="h-10 w-10 rounded-full bg-gradient-to-tr from-zinc-800 to-zinc-700 flex items-center justify-center font-bold text-sm text-gold border border-white/10 shrink-0">NG</div>
+            <div class="flex flex-col">
+              <span class="text-sm font-bold text-white">Neha Goel</span>
+              <span class="text-[9px] text-gray-500 uppercase tracking-wider font-semibold">Senior Recruiter @ <span class="text-gold">Synthesia India</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ SECTION -->
+  <section id="faq" class="relative py-24 px-6 z-10 bg-[#090909] border-t border-white/5">
+    <div class="max-w-4xl mx-auto flex flex-col gap-16">
+      <div class="flex flex-col items-center text-center gap-4 max-w-3xl mx-auto">
+        <span class="text-xs font-bold uppercase tracking-[0.2em] text-gold font-display">FAQ</span>
+        <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">Frequently Asked Questions</h2>
+        <p class="text-sm md:text-base text-gray-400">Got questions? We have answers. Find answers to common inquiries about the ecosystem.</p>
+      </div>
+
+      <div class="flex flex-col gap-4">
+        <!-- Accordion 1 -->
+        <div class="rounded-3xl border border-white/5 bg-cardDark/30 backdrop-blur-md overflow-hidden">
+          <button onclick="toggleFaq(0)" class="w-full flex items-center justify-between p-6 md:p-8 text-left transition-colors hover:bg-white/[0.01]">
+            <div class="flex items-center gap-4">
+              <i data-lucide="help-circle" id="faq-icon-0" class="h-5 w-5 text-gold shrink-0"></i>
+              <span class="text-xs md:text-sm font-bold text-white tracking-wide">What is NexBeyond and who is it designed for?</span>
+            </div>
+            <i data-lucide="chevron-down" id="faq-arrow-0" class="h-5 w-5 text-gold shrink-0 transition-transform duration-300 rotate-180"></i>
+          </button>
+          <div id="faq-content-0" class="transition-all duration-300 ease-in-out max-h-60 opacity-100 border-t border-white/5">
+            <div class="p-6 md:p-8 text-xs md:text-sm text-gray-400 leading-relaxed">
+              NexBeyond is India's most practical, project-driven AI learning ecosystem. It is engineered for students, software engineers, and professionals who want to transition from passive AI users into active AI builders by writing, reviewing, and deploying real code rather than just watching lecture slides.
+            </div>
+          </div>
+        </div>
+
+        <!-- Accordion 2 -->
+        <div class="rounded-3xl border border-white/5 bg-cardDark/30 backdrop-blur-md overflow-hidden">
+          <button onclick="toggleFaq(1)" class="w-full flex items-center justify-between p-6 md:p-8 text-left transition-colors hover:bg-white/[0.01]">
+            <div class="flex items-center gap-4">
+              <i data-lucide="help-circle" id="faq-icon-1" class="h-5 w-5 text-gray-500 shrink-0"></i>
+              <span class="text-xs md:text-sm font-bold text-white tracking-wide">Do I need deep programming experience to join?</span>
+            </div>
+            <i data-lucide="chevron-down" id="faq-arrow-1" class="h-5 w-5 text-gray-500 shrink-0 transition-transform duration-300"></i>
+          </button>
+          <div id="faq-content-1" class="transition-all duration-300 ease-in-out max-h-0 opacity-0 overflow-hidden">
+            <div class="p-6 md:p-8 text-xs md:text-sm text-gray-400 leading-relaxed">
+              While foundational coding knowledge (e.g., basic Python or JavaScript syntax) is helpful, we structure our learning modules to scale in complexity. We begin with core concepts and work up to advanced agent coordination, model fine-tuning, and production system design.
+            </div>
+          </div>
+        </div>
+
+        <!-- Accordion 3 -->
+        <div class="rounded-3xl border border-white/5 bg-cardDark/30 backdrop-blur-md overflow-hidden">
+          <button onclick="toggleFaq(2)" class="w-full flex items-center justify-between p-6 md:p-8 text-left transition-colors hover:bg-white/[0.01]">
+            <div class="flex items-center gap-4">
+              <i data-lucide="help-circle" id="faq-icon-2" class="h-5 w-5 text-gray-500 shrink-0"></i>
+              <span class="text-xs md:text-sm font-bold text-white tracking-wide">How does the mentor feedback loop function?</span>
+            </div>
+            <i data-lucide="chevron-down" id="faq-arrow-2" class="h-5 w-5 text-gray-500 shrink-0 transition-transform duration-300"></i>
+          </button>
+          <div id="faq-content-2" class="transition-all duration-300 ease-in-out max-h-0 opacity-0 overflow-hidden">
+            <div class="p-6 md:p-8 text-xs md:text-sm text-gray-400 leading-relaxed">
+              Our mentoring is code-level and synchronous. You receive detailed feedback on pull requests, cohort code reviews during weekly reviews, 1-on-1 career mapping alignments, and architecture critiques from senior engineers and authors like founder Rashmi Singh.
+            </div>
+          </div>
+        </div>
+
+        <!-- Accordion 4 -->
+        <div class="rounded-3xl border border-white/5 bg-cardDark/30 backdrop-blur-md overflow-hidden">
+          <button onclick="toggleFaq(3)" class="w-full flex items-center justify-between p-6 md:p-8 text-left transition-colors hover:bg-white/[0.01]">
+            <div class="flex items-center gap-4">
+              <i data-lucide="help-circle" id="faq-icon-3" class="h-5 w-5 text-gray-500 shrink-0"></i>
+              <span class="text-xs md:text-sm font-bold text-white tracking-wide">What types of projects will I develop in this ecosystem?</span>
+            </div>
+            <i data-lucide="chevron-down" id="faq-arrow-3" class="h-5 w-5 text-gray-500 shrink-0 transition-transform duration-300"></i>
+          </button>
+          <div id="faq-content-3" class="transition-all duration-300 ease-in-out max-h-0 opacity-0 overflow-hidden">
+            <div class="p-6 md:p-8 text-xs md:text-sm text-gray-400 leading-relaxed">
+              You will build production-grade, multi-agent frameworks, fine-tuned localized language models, vector search indexes (such as Pinecone or Qdrant), and full-stack software assemblies that integrate and run models dynamically.
+            </div>
+          </div>
+        </div>
+
+        <!-- Accordion 5 -->
+        <div class="rounded-3xl border border-white/5 bg-cardDark/30 backdrop-blur-md overflow-hidden">
+          <button onclick="toggleFaq(4)" class="w-full flex items-center justify-between p-6 md:p-8 text-left transition-colors hover:bg-white/[0.01]">
+            <div class="flex items-center gap-4">
+              <i data-lucide="help-circle" id="faq-icon-4" class="h-5 w-5 text-gray-500 shrink-0"></i>
+              <span class="text-xs md:text-sm font-bold text-white tracking-wide">How does the internship and job placement matching work?</span>
+            </div>
+            <i data-lucide="chevron-down" id="faq-arrow-4" class="h-5 w-5 text-gray-500 shrink-0 transition-transform duration-300"></i>
+          </button>
+          <div id="faq-content-4" class="transition-all duration-300 ease-in-out max-h-0 opacity-0 overflow-hidden">
+            <div class="p-6 md:p-8 text-xs md:text-sm text-gray-400 leading-relaxed">
+              We partner with high-growth AI startups, technology firms, and venture capitals. As you complete and deploy projects on your builder dashboard, your profile and verified repositories are directly matched and recommended to hiring panels.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER SIGNUP -->
+  <section id="newsletter" class="relative py-24 px-6 z-10 bg-[#060606] border-t border-white/5">
+    <div class="absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] w-[500px] h-[250px] bg-gold/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+    <div class="max-w-4xl mx-auto">
+      <div class="p-8 md:p-16 rounded-3xl bg-cardDark border border-white/5 relative overflow-hidden flex flex-col items-center text-center gap-8 shadow-[0_15px_40px_-20px_rgba(0,0,0,0.6)]">
+        <div class="absolute top-0 right-0 w-48 h-48 bg-gold/5 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="flex flex-col items-center gap-3">
+          <span class="text-xs font-bold uppercase tracking-[0.2em] text-gold font-display">Stay Updated</span>
+          <h2 class="text-2xl md:text-4xl font-extrabold tracking-tight text-white">Join the Builder Ecosystem</h2>
+          <p class="text-xs md:text-sm text-gray-400 max-w-lg leading-relaxed font-medium">Get notified about new cohort openings, regional meetups, hackathons, and curated AI insights. Zero spam.</p>
+        </div>
+
+        <div id="newsletter-form-container" class="w-full max-w-md relative z-10 mt-4">
+          <form onsubmit="handleSubscribe(event)" class="w-full flex flex-col sm:flex-row gap-3">
+            <input
+              type="email"
+              required
+              id="newsletter-email"
+              placeholder="Enter your professional email"
+              class="w-full px-5 py-3 rounded-full bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold text-xs md:text-sm transition-all"
+            />
+            <button
+              type="submit"
+              class="group flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-gold hover:bg-gold-light text-black font-semibold text-xs md:text-sm transition-all shrink-0 hover:shadow-[0_0_15px_rgba(212,175,55,0.3)]"
+            >
+              Join
+              <i data-lucide="arrow-right" class="h-4 w-4 transition-transform group-hover:translate-x-0.5"></i>
+            </button>
+          </form>
+        </div>
+
+        <div id="newsletter-success" class="hidden flex flex-col items-center gap-3 py-4">
+          <i data-lucide="check-circle-2" class="h-10 w-10 text-gold"></i>
+          <div class="flex flex-col gap-1">
+            <span class="text-sm font-bold text-white">Successfully Enrolled</span>
+            <p class="text-xs text-gray-500">Welcome to the inner circle. We will be in touch shortly.</p>
+          </div>
+        </div>
+
+        <span class="text-[10px] text-gray-500 font-medium tracking-wide">By joining, you agree to receive technical updates from NexBeyond.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="relative bg-[#050505] border-t border-white/5 pt-20 pb-10 overflow-hidden z-10">
+    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-gold/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
+      <!-- Brand -->
+      <div class="lg:col-span-2 flex flex-col items-start gap-4">
+        <div class="flex items-center gap-3">
+          <!-- SVG NB Logo -->
+          <svg viewBox="0 0 100 100" class="h-8 w-8 overflow-visible" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <use href="#g-n" />
+            <path d="M 22 75 L 22 25 L 34 25 L 58 60 L 58 25 L 68 25 L 68 75 L 56 75 L 32 40 L 32 75 Z" fill="url(#g-n)" />
+            <path d="M 52 25 C 64 25, 76 29, 76 40 C 76 45, 72 49, 66 51 C 74 53, 79 58, 79 66 C 79 77, 67 80, 52 80 L 34 80 L 34 72 L 52 72 C 62 72, 68 70, 68 65 C 68 59, 60 58, 52 58 L 44 58 L 44 50 L 52 50 C 60 50, 66 49, 66 43 C 66 38, 60 37, 52 37 L 34 37 L 34 25 Z" fill="url(#g-b)" opacity="0.85" />
+            <ellipse cx="50" cy="52" rx="56" ry="18" stroke="url(#g-orb)" stroke-width="3.5" transform="rotate(-15, 50, 52)" />
+          </svg>
+          <div class="flex items-center text-xl font-bold tracking-tight">
+            <span class="text-white">Nex</span><span class="bg-gradient-to-r from-[#00c6ff] via-[#0072ff] to-[#9025ff] bg-clip-text text-transparent">Beyond</span>
+          </div>
+        </div>
+        <p class="text-xs md:text-sm text-gray-400 max-w-sm mt-4">India's most practical AI learning ecosystem designed to transform AI consumers into builders through hands-on projects, expert mentorship, and a thriving community.</p>
+        
+        <div class="flex items-center gap-4 mt-6">
+          <a href="https://github.com" target="_blank" class="p-2.5 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white transition-all"><i data-lucide="github" class="h-4 w-4"></i></a>
+          <a href="https://linkedin.com" target="_blank" class="p-2.5 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white transition-all"><i data-lucide="linkedin" class="h-4 w-4"></i></a>
+          <a href="https://instagram.com" target="_blank" class="p-2.5 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white transition-all"><i data-lucide="instagram" class="h-4 w-4"></i></a>
+        </div>
+      </div>
+
+      <!-- Links Columns -->
+      <div>
+        <h4 class="text-sm font-semibold text-white uppercase tracking-wider mb-6">Community</h4>
+        <ul class="flex flex-col gap-3 text-xs md:text-sm text-gray-400">
+          <li><a href="#newsletter" class="hover:text-white transition-colors">Join Community</a></li>
+          <li><a href="#features" class="hover:text-white transition-colors">Mock Interviews</a></li>
+          <li><a href="#features" class="hover:text-white transition-colors">Resume Review</a></li>
+          <li><a href="#schedule" class="hover:text-white transition-colors">Weekly Schedule</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-sm font-semibold text-white uppercase tracking-wider mb-6">Events</h4>
+        <ul class="flex flex-col gap-3 text-xs md:text-sm text-gray-400">
+          <li><a href="#features" class="hover:text-white transition-colors">AI Sessions</a></li>
+          <li><a href="#features" class="hover:text-white transition-colors">Hackathons</a></li>
+          <li><a href="#schedule" class="hover:text-white transition-colors">Workshops</a></li>
+          <li><a href="#roadmap" class="hover:text-white transition-colors">Offline Meetups</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-sm font-semibold text-white uppercase tracking-wider mb-6">Resources</h4>
+        <ul class="flex flex-col gap-3 text-xs md:text-sm text-gray-400">
+          <li><a href="#features" class="hover:text-white transition-colors">Project Showcase</a></li>
+          <li><a href="#schedule" class="hover:text-white transition-colors">AI Insights</a></li>
+          <li><a href="#features" class="hover:text-white transition-colors">AI News</a></li>
+          <li><a href="#founder" class="hover:text-white transition-colors">Book: AI Beyond ChatGPT</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Featured Book Banner -->
+    <div class="max-w-7xl mx-auto px-6 mb-16">
+      <div class="flex flex-col md:flex-row items-center justify-between p-6 rounded-2xl bg-cardDark/50 border border-white/5 gap-6">
+        <div class="flex items-center gap-4">
+          <div class="p-3 bg-gold/10 rounded-xl border border-gold/20 text-gold">
+            <i data-lucide="book-open" class="h-6 w-6"></i>
+          </div>
+          <div>
+            <h5 class="font-semibold text-white">Founder's Masterpiece Available</h5>
+            <p class="text-xs text-gray-400">Get your copy of "AI Beyond ChatGPT" by Rashmi Singh.</p>
+          </div>
+        </div>
+        <a href="#founder" class="flex items-center gap-1.5 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs font-semibold text-white hover:bg-white/10 transition-all">
+          Learn More <i data-lucide="arrow-up-right" class="h-3 w-3"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Bottom -->
+    <div class="max-w-7xl mx-auto px-6 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-500">
+      <p>© 2026 NexBeyond. All rights reserved.</p>
+      <div class="flex items-center gap-6">
+        <a href="#" class="hover:text-gray-300">Privacy Policy</a>
+        <a href="#" class="hover:text-gray-300">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // Responsive mobile navbar toggle
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Sticky Navbar shadow effect on scroll
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 20) {
+        navbar.classList.add('bg-[#090909]/80', 'backdrop-blur-md', 'border-b', 'border-white/5');
+        navbar.classList.remove('py-6');
+        navbar.classList.add('py-4');
+      } else {
+        navbar.classList.remove('bg-[#090909]/80', 'backdrop-blur-md', 'border-b', 'border-white/5');
+        navbar.classList.add('py-6');
+        navbar.classList.remove('py-4');
+      }
+    });
+
+    // Interactive card spotlight mouse follow glow
+    document.querySelectorAll('.spotlight-card').forEach(card => {
+      const glow = card.querySelector('.spotlight-glow');
+      if (!glow) return;
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        glow.style.left = `${x}px`;
+        glow.style.top = `${y}px`;
+      });
+    });
+
+    // Hero Section Canvas Particles Animation
+    const canvas = document.getElementById('hero-canvas');
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    const particles = [];
+    const pCount = Math.min(Math.floor(width / 15), 70);
+
+    for(let i=0; i<pCount; i++) {
+      particles.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
+        radius: Math.random() * 2 + 0.5,
+        color: i % 3 === 0 ? "#D4AF37" : i % 3 === 1 ? "#00c6ff" : "#9025ff"
+      });
+    }
+
+    function renderCanvas() {
+      ctx.clearRect(0,0,width,height);
+      ctx.lineWidth = 0.5;
+
+      // Lines
+      for(let i=0; i<particles.length; i++) {
+        for(let j=i+1; j<particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const d = Math.sqrt(dx*dx + dy*dy);
+          if (d < 120) {
+            ctx.strokeStyle = `rgba(255,255,255,${(1 - d/120) * 0.1})`;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Nodes
+      particles.forEach(p => {
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = 0.6;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fill();
+
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0 || p.x > width) p.vx *= -1;
+        if (p.y < 0 || p.y > height) p.vy *= -1;
+      });
+
+      ctx.globalAlpha = 1.0;
+      requestAnimationFrame(renderCanvas);
+    }
+    renderCanvas();
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    // Statistic Counter Increment Animation
+    const counters = document.querySelectorAll('.stat-counter');
+    counters.forEach(counter => {
+      const target = +counter.getAttribute('data-target');
+      const duration = 1200;
+      let start = null;
+
+      function step(timestamp) {
+        if (!start) start = timestamp;
+        const progress = timestamp - start;
+        const ratio = Math.min(progress / duration, 1);
+        const easeQuad = x => 1 - (1 - x) * (1 - x);
+        counter.innerText = Math.floor(easeQuad(ratio) * target);
+
+        if (progress < duration) {
+          requestAnimationFrame(step);
+        } else {
+          counter.innerText = target;
+        }
+      }
+
+      // Trigger counter when visible
+      const observer = new IntersectionObserver((entries) => {
+        if(entries[0].isIntersecting) {
+          requestAnimationFrame(step);
+          observer.disconnect();
+        }
+      }, { threshold: 0.1 });
+
+      observer.observe(counter);
+    });
+
+    // Traditional vs NexBeyond Tab Switcher
+    function toggleProblemTab(tab) {
+      const tabTr = document.getElementById('tab-tr');
+      const tabNb = document.getElementById('tab-nb');
+      const cardTr = document.getElementById('card-traditional');
+      const cardNb = document.getElementById('card-nexbeyond');
+
+      if (tab === 'tr') {
+        tabTr.className = "px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 bg-red-950/40 text-red-400 border border-red-900/50";
+        tabNb.className = "px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 text-gray-400 hover:text-white";
+        cardTr.classList.remove('hidden');
+        cardNb.classList.add('hidden');
+      } else {
+        tabTr.className = "px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 text-gray-400 hover:text-white";
+        tabNb.className = "px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 bg-gold/10 text-gold border border-gold/20";
+        cardTr.classList.add('hidden');
+        cardNb.classList.remove('hidden');
+      }
+    }
+
+    // Learning Journey steps configuration
+    const journeySteps = [
+      { title: "Join", phase: "Phase 1", icon: "user-plus", desc: "Enter the ecosystem, pass a diagnostic assessment, and integrate into our localized study and building cohorts." },
+      { title: "Learn", phase: "Phase 2", icon: "book-open", desc: "Acquire deep theoretical foundations under the guidance of top AI developers, authors, and industry mentors." },
+      { title: "Build", phase: "Phase 3", icon: "terminal", desc: "Form teams or build solo. Develop multi-agent pipelines, customized language model fine-tunes, and visual models." },
+      { title: "Collaborate", phase: "Phase 4", icon: "users", desc: "Participate in weekly sprints, localized and national hackathons, and contribute to production-grade open source repos." },
+      { title: "Mentorship", phase: "Phase 5", icon: "graduation-cap", desc: "Receive ongoing 1-on-1 and cohort code reviews, career roadmap alignment, and expert code architecture critiques." },
+      { title: "Portfolio", phase: "Phase 6", icon: "award", desc: "Polish and deploy your applications. Document and showcase your work via technical blogs and GitHub repositories." },
+      { title: "Internship", phase: "Phase 7", icon: "briefcase", desc: "Match with partnered AI startups and tech conglomerates for rapid corporate integration and practical experience." },
+      { title: "Job", phase: "Phase 8", icon: "trophy", desc: "Secure high-value placements as prompt engineers, full-stack AI developers, ML engineers, or solution architects." },
+      { title: "Become Mentor", phase: "Phase 9", icon: "user-check", desc: "Give back to the ecosystem. Transition to a senior mentor role, lead sessions, author content, and build future talent." }
+    ];
+
+    function selectJourneyStep(idx) {
+      // update buttons style
+      for (let i = 0; i < 9; i++) {
+        const btn = document.getElementById(`j-step-${i}`);
+        const iconWrapper = btn.querySelector('.j-icon-wrapper');
+        const text = btn.querySelector('span');
+        const num = btn.querySelector('.absolute');
+
+        if (i === idx) {
+          btn.className = "relative p-5 rounded-2xl flex flex-col items-center gap-4 text-center border bg-gold/10 border-gold shadow-[0_0_20px_rgba(212,175,55,0.15)] scale-105 z-10 transition-all duration-300";
+          iconWrapper.className = "j-icon-wrapper p-3 rounded-xl border bg-gold text-black border-gold";
+          text.className = "text-sm font-bold tracking-tight text-gold";
+          num.className = "absolute top-2 left-2 text-[10px] font-bold h-5 w-5 rounded-full flex items-center justify-center border border-gold/30 text-gold bg-gold/10";
+        } else {
+          btn.className = "relative p-5 rounded-2xl flex flex-col items-center gap-4 text-center border bg-cardDark/40 border-white/5 hover:border-white/10 hover:bg-cardDark/60 transition-all duration-300";
+          iconWrapper.className = "j-icon-wrapper p-3 rounded-xl border bg-white/5 text-gray-400 border-white/10";
+          text.className = "text-sm font-bold tracking-tight text-gray-300";
+          num.className = "absolute top-2 left-2 text-[10px] font-bold h-5 w-5 rounded-full flex items-center justify-center border border-white/10 text-gray-500";
+        }
+      }
+
+      // update details panel
+      const step = journeySteps[idx];
+      document.getElementById('j-panel-phase').innerText = step.phase;
+      document.getElementById('j-panel-title').innerText = step.title;
+      document.getElementById('j-panel-desc').innerText = step.desc;
+      
+      const iconPanel = document.getElementById('j-panel-icon');
+      iconPanel.innerHTML = `<i data-lucide="${step.icon}" class="h-6 w-6"></i>`;
+      lucide.createIcons();
+    }
+
+    // Weekly calendar sessions configuration
+    const calendarData = [
+      { day: "Monday", title: "AI Insights", time: "07:30 PM - 09:00 PM", desc: "Deep dive into state-of-the-art model architectures, academic research briefs, and industry market releases.", tags: ["Research", "Deep Learning", "Insights"], icon: "sparkles" },
+      { day: "Tuesday", title: "Prompt Challenge", time: "06:00 PM - 08:00 PM", desc: "Interactive live sprints focusing on building highly efficient templates, system instructions, and schemas.", tags: ["Interactive", "Prompting", "Sprints"], icon: "zap" },
+      { day: "Wednesday", title: "Project Review", time: "08:00 PM - 10:00 PM", desc: "Get detailed cohort reviews, peer checks, and pull request refactoring critiques from industry leads.", tags: ["Code Review", "Portfolio", "Collaboration"], icon: "file-code" },
+      { day: "Thursday", title: "AI Tool Showcase", time: "07:00 PM - 08:30 PM", desc: "Hands-on implementation of freshly released frameworks, vector libraries, and deployment tools.", tags: ["Engineering", "Libraries", "Deployment"], icon: "hammer" },
+      { day: "Friday", title: "Career Accelerator", time: "06:00 PM - 07:30 PM", desc: "Resume optimizations, mock system-design reviews, portfolio building, and recruiter panel alignments.", tags: ["Career", "Resume", "Interviews"], icon: "fast-forward" },
+      { day: "Saturday", title: "AI & ML Workshop", time: "02:00 PM - 05:00 PM", desc: "Full-scale building bootcamps. Construct and deploy active, production-grade applications from scratch.", tags: ["Building", "Cohort Bootcamp", "Production"], icon: "presentation" },
+      { day: "Sunday", title: "Networking Meet", time: "04:00 PM - 06:00 PM", desc: "Virtual and localized peer-to-peer discussions, team forming, brainstorms, and mentor Q&A panels.", tags: ["Network", "Brainstorming", "Mentorship"], icon: "users" }
+    ];
+
+    function selectScheduleDay(idx) {
+      for (let i = 0; i < 7; i++) {
+        const btn = document.getElementById(`d-btn-${i}`);
+        const icon = btn.querySelector('.d-icon');
+        const label = btn.querySelector('span');
+        const header = btn.querySelector('h3');
+
+        if (i === idx) {
+          btn.className = "relative p-6 rounded-3xl flex flex-col items-start gap-4 text-left border bg-gold/10 border-gold shadow-[0_0_20px_rgba(212,175,55,0.15)] scale-[1.03] z-10 transition-all duration-300";
+          icon.className = "d-icon p-1.5 rounded-lg border bg-gold text-black border-gold";
+          label.className = "text-xs font-semibold text-gold uppercase";
+          header.className = "text-sm font-bold text-white";
+        } else {
+          btn.className = "relative p-6 rounded-3xl flex flex-col items-start gap-4 text-left border bg-cardDark/40 border-white/5 hover:border-white/10 transition-all duration-300";
+          icon.className = "d-icon p-1.5 rounded-lg border bg-white/5 text-gray-400 border-white/10";
+          label.className = "text-xs font-semibold text-gray-500 uppercase";
+          header.className = "text-sm font-bold text-gray-300";
+        }
+      }
+
+      // update details
+      const item = calendarData[idx];
+      document.getElementById('cal-day-badge').innerText = item.day;
+      document.getElementById('cal-time').innerText = item.time;
+      document.getElementById('cal-title').innerText = item.title;
+      document.getElementById('cal-desc').innerText = item.desc;
+      
+      const tagsBox = document.getElementById('cal-tags');
+      tagsBox.innerHTML = item.tags.map(t => `<span class="px-3 py-1 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-gray-300">#${t}</span>`).join('');
+    }
+
+    // Ecosystem Nodes configuration
+    const ecosystemNodes = {
+      center: { title: "NexBeyond Core", desc: "India's largest AI-first builder ecosystem. The central gateway coordinating cohorts, projects, mentors, and employers." },
+      students: { title: "Students", desc: "Ambitious students from top colleges who want to build real-world AI applications rather than just collect paper certificates." },
+      mentors: { title: "Mentors", desc: "AI Developers, published authors, and active researchers who provide detailed code reviews and career guidance." },
+      experts: { title: "Industry Experts", desc: "Engineers from major AI tech companies and startups conducting mock interviews and reviewing production architectures." },
+      projects: { title: "Projects", desc: "Functional multi-agent workflows, model fine-tunes, and full-stack software repos that serve as your real proof-of-skill." },
+      companies: { title: "Companies", desc: "Partnered software firms, venture capitals, and high-growth AI startups looking for validated builder talent." },
+      jobs: { title: "Jobs & Internships", desc: "Direct talent placements and internships matching builders with high-impact product teams." }
+    };
+
+    function selectEcosystemNode(nodeId) {
+      // update nodes styling
+      const allIds = ['center', 'students', 'mentors', 'experts', 'projects', 'companies', 'jobs'];
+      allIds.forEach(id => {
+        const nodeBtn = document.getElementById(`node-${id}`);
+        if (!nodeBtn) return;
+        if (id === nodeId) {
+          if (id === 'center') {
+            nodeBtn.className = "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-6 rounded-full border border-gold bg-gold text-black shadow-[0_0_35px_rgba(212,175,55,0.4)] scale-110 z-20 transition-all duration-300";
+          } else {
+            nodeBtn.className = `absolute -translate-x-1/2 -translate-y-1/2 p-4 rounded-full border border-gold bg-gold text-black shadow-[0_0_20px_rgba(212,175,55,0.3)] scale-105 z-10 transition-all duration-300`;
+          }
+        } else {
+          if (id === 'center') {
+            nodeBtn.className = "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-6 rounded-full border border-gold/40 bg-black text-gold hover:border-gold z-20 transition-all duration-300";
+          } else {
+            const leftTop = getLeftTop(id);
+            nodeBtn.className = `absolute ${leftTop} -translate-x-1/2 -translate-y-1/2 p-4 rounded-full border border-white/10 bg-cardDark text-gray-400 hover:border-white/20 hover:text-white z-10 transition-all duration-300`;
+          }
+        }
+      });
+
+      // update description
+      const details = ecosystemNodes[nodeId];
+      document.getElementById('node-details-title').innerText = details.title;
+      document.getElementById('node-details-desc').innerText = details.desc;
+    }
+
+    function getLeftTop(id) {
+      if (id === 'students') return "left-[15%] top-[25%]";
+      if (id === 'mentors') return "left-[15%] top-[75%]";
+      if (id === 'experts') return "left-[50%] top-[15%]";
+      if (id === 'projects') return "left-[50%] top-[85%]";
+      if (id === 'companies') return "left-[85%] top-[25%]";
+      if (id === 'jobs') return "left-[85%] top-[75%]";
+      return "";
+    }
+
+    // FAQ toggles
+    function toggleFaq(idx) {
+      for (let i = 0; i < 5; i++) {
+        const content = document.getElementById(`faq-content-${i}`);
+        const arrow = document.getElementById(`faq-arrow-${i}`);
+        const icon = document.getElementById(`faq-icon-${i}`);
+
+        if (i === idx) {
+          if (content.classList.contains('max-h-0')) {
+            content.classList.remove('max-h-0', 'opacity-0', 'overflow-hidden');
+            content.classList.add('max-h-60', 'opacity-100', 'border-t', 'border-white/5');
+            arrow.classList.add('rotate-180', 'text-gold');
+            icon.classList.add('text-gold');
+            icon.classList.remove('text-gray-500');
+          } else {
+            content.classList.add('max-h-0', 'opacity-0', 'overflow-hidden');
+            content.classList.remove('max-h-60', 'opacity-100', 'border-t', 'border-white/5');
+            arrow.classList.remove('rotate-180', 'text-gold');
+            icon.classList.remove('text-gold');
+            icon.classList.add('text-gray-500');
+          }
+        } else {
+          content.classList.add('max-h-0', 'opacity-0', 'overflow-hidden');
+          content.classList.remove('max-h-60', 'opacity-100', 'border-t', 'border-white/5');
+          arrow.classList.remove('rotate-180', 'text-gold');
+          icon.classList.remove('text-gold');
+          icon.classList.add('text-gray-500');
+        }
+      }
+    }
+
+    // Newsletter subscription handling
+    function handleSubscribe(e) {
+      e.preventDefault();
+      const email = document.getElementById('newsletter-email').value;
+      if (!email) return;
+      document.getElementById('newsletter-form-container').classList.add('hidden');
+      document.getElementById('newsletter-success').classList.remove('hidden');
+    }
+
+    // GSAP ScrollTrigger Animations
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Initial page load animations
+    gsap.from('#navbar', { y: -30, opacity: 0, duration: 0.8, ease: 'power2.out' });
+    gsap.from('h1', { y: 40, opacity: 0, duration: 1, delay: 0.2, ease: 'power3.out' });
+    gsap.from('p', { y: 20, opacity: 0, duration: 0.8, delay: 0.4, ease: 'power2.out' });
+    gsap.from('.stat-counter', { opacity: 0, y: 15, duration: 0.8, delay: 0.6, stagger: 0.1 });
+
+    // Section header animations
+    gsap.utils.toArray('span.text-gold').forEach(span => {
+      gsap.from(span, {
+        scrollTrigger: {
+          trigger: span,
+          start: 'top 85%',
+        },
+        opacity: 0,
+        y: 10,
+        duration: 0.6,
+      });
+    });
+
+    gsap.utils.toArray('h2').forEach(h2 => {
+      gsap.from(h2, {
+        scrollTrigger: {
+          trigger: h2,
+          start: 'top 85%',
+        },
+        opacity: 0,
+        y: 20,
+        duration: 0.8,
+        ease: 'power2.out'
+      });
+    });
+
+    // Fade-in grid card layouts
+    gsap.utils.toArray('.spotlight-card').forEach(card => {
+      gsap.from(card, {
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 90%',
+        },
+        opacity: 0,
+        y: 30,
+        duration: 0.8,
+        ease: 'power2.out'
+      });
+    });
+  </script>
+</body>
+</html>
